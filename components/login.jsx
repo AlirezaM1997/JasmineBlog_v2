@@ -1,6 +1,9 @@
 //next
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import styles from "./validation.module.css";
 
 //other
 import { useState } from "react";
@@ -10,11 +13,11 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useAllState } from "../../context/state";
-import bg from '../../public/images/backgroundsignup.jpg'
-export default function Login() {
-  // const navToDashboard = useNavigate();
+import { useAllState } from "../context/state";
 
+export default function Login() {
+  const router = useRouter();
+console.log('router',router);
   const { setToken } = useAllState();
 
   const [hintUsernameInput, setHintUsernameInput] = useState(false);
@@ -59,7 +62,7 @@ export default function Login() {
             console.log(data);
             if (data.status === 200) {
               toast.success("You have successfully logged in!");
-              // setTimeout(() => navToDashboard("/user/dashboard"), 3000);
+              setTimeout(() => router.push("/user/dashboard"), 3000);
             } else {
               setHintInfoWrong(true);
               setIsLoaded(false);
@@ -77,7 +80,11 @@ export default function Login() {
 
   return (
     <>
-      <section className="wrapperSignUpBg bg-center bg-cover bg-no-repeat flex">
+      <Head>
+        <title>Login</title>
+      </Head>
+      <section className={`${styles.wrapperSignUpBg}  flex`}>
+        {/* <Image src={'/images/backgroundsignup.jpg'} layout='fill' /> */}
         <div className="md:w-1/2 py-4 md:flex hidden items-center justify-center">
           <div className="w-[420px] py-14 px-1 text-center relative">
             <div className="z-20 w-5/6 flex flex-col items-start signupSection">
@@ -217,16 +224,13 @@ export default function Login() {
           toastStyle={{ background: "#607027" }}
         />
       </section>
-      <style jsx>{`
+      {/* <style jsx>{`
         .wrapperSignUpBg {
-          background-image: linear-gradient(
-              to bottom,
-              rgba(255, 255, 255, 0) 60%,
-              rgba(255, 255, 255, 1)
-            ),
-            url('bg');
+          width: 62px;
+          height: 62px;
+          background: url(${bg}) no-repeat;
         }
-      `}</style>
+      `}</style> */}
     </>
   );
 }
