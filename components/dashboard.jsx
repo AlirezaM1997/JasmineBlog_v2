@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     // console.log(userInfo);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     fetch(`http://localhost:4000/blog/my-blogs`, {
       method: "GET",
       headers: {

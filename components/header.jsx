@@ -107,7 +107,7 @@ export default function Header({ children }) {
                       Log in
                     </a>
                   </Link>
-                  <Link href={"/user/signup"}>
+                  <Link href={"/validation/signup"}>
                     <a className="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-2 rounded">
                       Sign up
                     </a>
@@ -222,28 +222,28 @@ export default function Header({ children }) {
               <ul className="p-0 -mx-5 my-0">
                 <li className="text-[#00000099]">
                   <Link href={"/"} onClick={showMenu}>
-                    <a className="text-sm font-normal py-[10px] px-[20px] block uppercase relative">
+                    <a className="text-sm text-black font-normal py-[10px] px-[20px] block uppercase relative">
                       home
                     </a>
                   </Link>
                 </li>
                 <li className="text-[#00000099]">
                   <Link href={"/"} onClick={showMenu}>
-                    <a className="text-sm font-normal py-[10px] px-[20px] block uppercase relative">
+                    <a className="text-sm text-black font-normal py-[10px] px-[20px] block uppercase relative">
                       category
                     </a>
                   </Link>
                 </li>
                 <li className="text-[#00000099]">
                   <Link href={"/about"} onClick={showMenu}>
-                    <a className="text-sm font-normal py-[10px] px-[20px] block uppercase relative">
+                    <a className="text-sm text-black font-normal py-[10px] px-[20px] block uppercase relative">
                       about
                     </a>
                   </Link>
                 </li>
                 <li className="text-[#00000099]">
                   <Link href={"/contact"} onClick={showMenu}>
-                    <a className="text-sm font-normal py-[10px] px-[20px] block uppercase relative">
+                    <a className="text-sm text-black font-normal py-[10px] px-[20px] block uppercase relative">
                       contact
                     </a>
                   </Link>

@@ -17,7 +17,7 @@ import { useAllState } from "../context/state";
 
 export default function Login() {
   const router = useRouter();
-console.log('router',router);
+
   const { setToken } = useAllState();
 
   const [hintUsernameInput, setHintUsernameInput] = useState(false);
@@ -84,10 +84,9 @@ console.log('router',router);
         <title>Login</title>
       </Head>
       <section className={`${styles.wrapperSignUpBg}  flex`}>
-        {/* <Image src={'/images/backgroundsignup.jpg'} layout='fill' /> */}
         <div className="md:w-1/2 py-4 md:flex hidden items-center justify-center">
           <div className="w-[420px] py-14 px-1 text-center relative">
-            <div className="z-20 w-5/6 flex flex-col items-start signupSection">
+            <div className="z-20 w-5/6 flex flex-col items-start animate-slowShow">
               <div className="pl-6">
                 <h1 className="text-5xl font-bold text-left tracking-wide text-black border-l-4 border-yellow-600 pl-2">
                   Keep it special
@@ -109,7 +108,7 @@ console.log('router',router);
         </div>
         <div className="md:w-1/2 py-4 w-full flex items-center justify-center text-center md:px-4 z-0  sm:mt-0 md:mt-0">
           <div className="w-[420px] px-5 bg-[#607027] py-10 text-center mb-11 relative ">
-            <div className="z-20 w-full flex flex-col items-center signupSection">
+            <div className="z-20 w-full flex flex-col items-center animate-slowShow">
               <div className="">
                 <h1 className="text-3xl font-bold mb-4 text-white text-center">
                   Login into account

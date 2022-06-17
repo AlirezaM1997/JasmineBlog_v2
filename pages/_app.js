@@ -1,3 +1,4 @@
+import Footer from "../components/footer";
 import Header from "../components/header";
 import { Provider } from "../context/state";
 import "../styles/global.css";
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
       <Header>
         <Component {...pageProps} />
       </Header>
+      <Footer/>
     </Provider>
   );
 }

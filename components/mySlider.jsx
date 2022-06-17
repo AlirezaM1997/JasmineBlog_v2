@@ -1,15 +1,16 @@
 //next
 import Link from "next/link";
 import styles from "./mySlider.module.css";
+import Head from "next/head";
+import Image from "next/image";
 
 //other
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+//context
 import { useAllState } from "../context/state";
-import Head from "next/head";
-import Image from "next/image";
 
 export default function MySlider() {
   const settings = {
@@ -36,8 +37,6 @@ export default function MySlider() {
           href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           rel="stylesheet"
         />
-      </Head>
-      <Head>
         <link
           rel="stylesheet"
           type="text/css"
@@ -82,9 +81,9 @@ export default function MySlider() {
                     <span className="font-[system-ui]">High Score</span>
                   </div>
                 </div>
-                <h3 className="post__title md:mb-5 mb-3 font-bold text-2xl">
+                <h3 className="post__title md:mb-5 mb-3 font-bold text-2xl ">
                   <Link href={`/blog/${item._id}`}>
-                    <a>{item.title}</a>
+                    <a className="text-[#333333]">{item.title}</a>
                   </Link>
                 </h3>
                 <div

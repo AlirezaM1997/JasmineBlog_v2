@@ -8,13 +8,13 @@ module.exports = {
     theme: {
       extend: {
         keyframes: {
-          changeOpacity: {
+          increaseOpacity: {
             "0%": { opacity: "0" },
             "100%": { opacity: "1" },
           },
         },
         animation: {
-          'changeOpa': "changeOpacity 1s ease-in-out",
+          'slowShow': "increaseOpacity 1s ease-in-out",
         },
         width: {
           45: "45%",

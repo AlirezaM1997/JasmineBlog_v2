@@ -87,10 +87,10 @@ export default function Home() {
                   {
                     <div className="list-item p-4 md:w-1/2">
                       <article
-                        className={`${styles.postOverlay} pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
+                        className={`postOverlay w-[calc(100%+15px)] tablet:h-[350px] pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
                       >
                         <div
-                          className={`${styles.postThumbOverlay} absolute w-full h-full`}
+                          className={`postThumbOverlay absolute w-full h-full after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-transparent `}
                         >
                           <Link href={"#"}>
                             <a className="w-full h-full block">
@@ -102,7 +102,7 @@ export default function Home() {
                           </Link>
                         </div>
                         <div
-                          className={`${styles.postTextOverlay} z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
+                          className={`postTextOverlay tablap:min-h-[220px] LCD:min-h-[280px] z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
                         >
                           <div
                             className={`${styles.postTextWrap} mb-0 pl-4 relative w-full`}
@@ -117,7 +117,7 @@ export default function Home() {
                               </Link>
                               <h6 className="post__title-overlay text-white font-medium mb-2 whitespace-normal break-words pointer-events-auto">
                                 <Link href={"#"}>
-                                  <a className="inline-block">
+                                  <a className="inline-block text-white">
                                     Some Men See Things as They Are and Ask Why
                                   </a>
                                 </Link>
@@ -137,10 +137,10 @@ export default function Home() {
                   }
                   <div className="list-item p-4 md:w-1/2">
                     <article
-                      className={`${styles.postOverlay} pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
+                      className={`postOverlay w-[calc(100%+15px)] tablet:h-[350px] pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
                     >
                       <div
-                        className={`${styles.postThumbOverlay} absolute w-full h-full`}
+                        className={`postThumbOverlay absolute w-full h-full after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-transparent`}
                       >
                         <Link href={"#"}>
                           <a className="w-full h-full block">
@@ -152,7 +152,7 @@ export default function Home() {
                         </Link>
                       </div>
                       <div
-                        className={`${styles.postTextOverlay} z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
+                        className={`postTextOverlay tablap:min-h-[220px] LCD:min-h-[280px] z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
                       >
                         <div
                           className={`${styles.postTextWrap} mb-0 pl-4 relative w-full`}
@@ -167,7 +167,7 @@ export default function Home() {
                             </Link>
                             <h6 className="post__title-overlay text-white font-medium mb-2 whitespace-normal break-words pointer-events-auto">
                               <Link href={"#"}>
-                                <a className="inline-block">
+                                <a className="inline-block text-white">
                                   Some Men See Things as They Are and Ask Why
                                 </a>
                               </Link>
@@ -195,7 +195,7 @@ export default function Home() {
           style={{ marginBottom: "120px" }}
         >
           <div className="container makbook:px-14 mx-auto iphone:px-8">
-            <div className="about__inner pt-40">
+            <div className="about__inner pt-40 tablet:pt-0">
               <div className="about__content px-[70px] pb-20 tablap:pb-[61px] fablet:p-[40px] fablet:border-[4px] iphone:p-[30px] iphone:flex-col border-[5px] border-[#607027] flex w-full">
                 <div className="about__thumb relative flex-none w-[370px] h-[500px] -mt-[155px] mr-[55px] tablap:-mt-[120px] tablap:w-[330px] tablap:h-[440px] fablet:m-0 fablet:mr-[35px] fablet:w-[250px] fablet:h-[360px] iphone:m-0 iphone:mb-[25px] iphone:w-full iphone:h-[295px]">
                   <div
@@ -285,8 +285,8 @@ export default function Home() {
 
         <div className="blogList relative mb-[110px] laptop:mb-[100px]">
           <div className="container mx-auto">
-            <div className="jasmine-heading relative text-center mb-10">
-              <h4 className="heading__title inline-block relative m-0 text-4xl leading-6 pr-12 pl-16 z-10">
+            <div className="jasmine-heading relative text-center mb-10 after:content-[''] after:w-full after:h-[1px] after:bg-[#0000001c] after:absolute after:top-1/2 after:left-0 after:z-0">
+              <h4 className="heading__title inline-block relative m-0 text-4xl leading-6 pr-12 pl-16 z-10 before:content-[''] before:w-[75px] before:h-[75px] before:bg-[#000] before:opacity-10 before:absolute before:left-[50px] before:top-1/2 before:-translate-y-[50%] after:content-[''] after:w-full after:h-full after:bg-[#fff] after:absolute after:top-0 after:left-0 after:-z-[1]">
                 Fashion Blogs
               </h4>
             </div>
@@ -301,9 +301,9 @@ export default function Home() {
                   })
                   .slice(0, 6)
                   .map((item, i) => (
-                    <div key={i} className="new-posts-item">
+                    <div key={i} className="new-posts-item p-[15px] w-[calc(100%/3)] fablet:w-1/2 iphone:w-full iphone:p-[10px]">
                       <article
-                        className={`${styles.postOverlay} post-overlay-new pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
+                        className={`postOverlay w-[calc(100%+15px)] tablet:h-[350px] post-overlay-new fablet:h-[350px] iphone:h-[280px] pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
                       >
                         <div className="post__thumb-overlay-fashion absolute w-full h-full">
                           <Link href={`/blog/${item._id}`} className="">
@@ -316,7 +316,7 @@ export default function Home() {
                           </Link>
                         </div>
                         <div
-                          className={`${styles.postTextOverlay} post__text-new z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
+                          className={`postTextOverlay post__text-new min-h-[350px] tablap:min-h-[280px] iphone:min-h-[280px] z-10 pointer-events-none flex items-end pt-10 relative w-full text-white`}
                         >
                           <div
                             className={`${styles.postTextWrap} mb-0 pl-4 relative w-full`}
@@ -331,7 +331,7 @@ export default function Home() {
                               </Link>
                               <h3 className="post__title-overlay text-white text-base font-medium mb-2 whitespace-normal break-words pointer-events-auto">
                                 <Link href={"#"}>
-                                  <a className="inline-block">{item.title}</a>
+                                  <a className="inline-block text-white">{item.title}</a>
                                 </Link>
                               </h3>
                               <div className={`text-[#ffffff99] my-0 text-sm`}>
@@ -360,7 +360,7 @@ export default function Home() {
               </h4>
             </div>
           </div> */}
-          <div className="container px-[15px]  makbook:px-32">
+          <div className="makbook:px-[6rem] container px-[15px]">
             <div className="allBlogs-content">
               <div className="row -mx-[15px] before:table before:content-[' ']">
                 <div className="col px-[15px] float-left tablet:w-full tablet:pr-[15px] tablap:w-[680px] LCD:w-[900px]">
@@ -390,7 +390,7 @@ export default function Home() {
                                         className="m-1 inline-block py-0 leading-4"
                                       >
                                         <Link href={`/hashtag/${j.name}`}>
-                                          <a className="post-tag w-full h-full text-xs before:content-['#'] hover:text-white">
+                                          <a className="post-tag text-[#CDD2BB] w-full h-full text-xs before:content-['#'] hover:text-white">
                                             {j.name}
                                           </a>
                                         </Link>
@@ -410,7 +410,7 @@ export default function Home() {
                                     href={`/blog/${i._id}`}
                                     // style={{ display: "-webkit-box" }}
                                   >
-                                    <a className="overflow-hidden">{i.title}</a>
+                                    <a className="overflow-hidden text-[#373737]">{i.title}</a>
                                   </Link>
                                 </h3>
                                 <div className="post__excerpt iphone:mb-0 md:mb-[20px] md:mx-auto text-[#888] text-[1.07rem] leading-6">

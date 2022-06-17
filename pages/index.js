@@ -5,10 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 //components
-import { Provider } from "../context/state";
 import Home from "../components/home";
-import Header from "../components/header";
-
 
 export default function Index() {
   return (
@@ -34,9 +31,8 @@ export default function Index() {
           referrerpolicy="origin"
         ></script>
       </Head>
-      {/* <Provider> */}
-        <Home />
-      {/* </Provider> */}
+
+      <Home />
     </>
   );
 }
