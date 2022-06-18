@@ -1,10 +1,13 @@
-import React from 'react'
-import Dashboard from '../../components/dashboard'
+//components
+// import Dashboard from "../../components/dashboard";
+import RequireAuth from "../../components/requireAuth";
 
 function dashboard() {
   return (
-    <Dashboard/>
-  )
+    <RequireAuth>
+     <h2>hiiiiiiiiiiiiiiiiiiiiiii</h2>
+    </RequireAuth>
+  );
 }
 
-export default dashboard
+export default dashboard;

@@ -62,7 +62,7 @@ export default function Login() {
             console.log(data);
             if (data.status === 200) {
               toast.success("You have successfully logged in!");
-              setTimeout(() => router.push("/user/dashboard"), 3000);
+              setTimeout(() => router.push({pathname :"/user/dashboard"}), 3000);
             } else {
               setHintInfoWrong(true);
               setIsLoaded(false);
@@ -186,7 +186,7 @@ export default function Login() {
                 <div className="px-4 pb-2 pt-4">
                   <button
                     onClick={login}
-                    className={`uppercase block w-full py-2 text-lg text-white rounded-full focus:outline-none ${
+                    className={`uppercase flex justify-center w-full py-2 text-lg text-white rounded-full focus:outline-none ${
                       isLoaded
                         ? "bg-indigo-300 hover:bg-indigo-300"
                         : "bg-indigo-500 hover:bg-indigo-600"
@@ -218,18 +218,8 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <ToastContainer
-          pauseOnHover="false"
-          toastStyle={{ background: "#607027" }}
-        />
+        <ToastContainer pauseOnHover="false" />
       </section>
-      {/* <style jsx>{`
-        .wrapperSignUpBg {
-          width: 62px;
-          height: 62px;
-          background: url(${bg}) no-repeat;
-        }
-      `}</style> */}
     </>
   );
 }

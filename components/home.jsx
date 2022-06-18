@@ -21,7 +21,8 @@ import {
 
 import { useAllState } from "../context/state";
 
-export default function Home() {
+export default function HomePage(props) {
+console.log('%c props in home','background:red',props);
   const { slideNumber } = useAllState();
   const { setTopBlogs } = useAllState();
   const { parsIsoDate } = useAllState();
@@ -29,30 +30,30 @@ export default function Home() {
   const [topUsers, setTopUsers] = useState();
   const [blogs, setBlogs] = useState();
   const [loading, setLoading] = useState(true);
-  const [loadedBlogs, setLoadedBlogs] = useState();
+  // const [loadedBlogs, setLoadedBlogs] = useState();
   const [count, setCount] = useState(5);
 
   useEffect(() => {
     // window.scrollTo(0, 0);
-    const myFunction = async () => {
-      const [res1, res2, res3] = await Promise.all([
-        fetch("http://localhost:4000/blog"),
-        fetch("http://localhost:4000/blog/top-blogs"),
-        fetch("http://localhost:4000/user/top-users"),
-      ]);
+    // const myFunction = async () => {
+    //   const [res1, res2, res3] = await Promise.all([
+    //     fetch("http://localhost:4000/blog"),
+    //     fetch("http://localhost:4000/blog/top-blogs"),
+    //     fetch("http://localhost:4000/user/top-users"),
+    //   ]);
 
-      const [data1, data2, data3] = await Promise.all([
-        res1.json(),
-        res2.json(),
-        res3.json(),
-      ]);
-      setBlogs(data1);
+    //   const [data1, data2, data3] = await Promise.all([
+    //     res1.json(),
+    //     res2.json(),
+    //     res3.json(),
+    //   ]);
+      setBlogs(props.props.data1);
       console.log("blogs :", blogs);
-      setTopBlogs(data2);
-      setTopUsers(data3);
+      setTopBlogs(props.props.data2);
+      setTopUsers(props.props.data3);
       setLoading(false);
-    };
-    myFunction();
+    // };
+    // myFunction();
   }, []);
 
   const loadMore = () => {

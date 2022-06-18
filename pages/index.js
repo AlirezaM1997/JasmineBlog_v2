@@ -5,9 +5,9 @@ import Head from "next/head";
 import Link from "next/link";
 
 //components
-import Home from "../components/home";
+import HomePage from "../components/home";
 
-export default function Index() {
+export default function Home(props) {
   return (
     <>
       <Head>
@@ -32,7 +32,34 @@ export default function Index() {
         ></script>
       </Head>
 
-      <Home />
+      <HomePage props={props} />
     </>
   );
 }
+
+export async function getStaticProps() {
+  const [res1, res2, res3] = await Promise.all([
+    fetch("http://localhost:4000/blog"),
+    fetch("http://localhost:4000/blog/top-blogs"),
+    fetch("http://localhost:4000/user/top-users"),
+  ]);
+
+  const [data1, data2, data3] = await Promise.all([
+    res1.json(),
+    res2.json(),
+    res3.json(),
+  ]);
+  return {
+    props: {data1, data2, data3}
+  }
+}
+// Page.getInitialProps = async ({ store, res }) => {
+//   if (res) {
+//       // res available only at server
+//       // no-store disable bfCache for any browser. So your HTML will not be cached
+//       res.setHeader('Cache-Control', 'no-store');
+//   }
+
+//   await store.dispatch(action());
+//   return {};
+// };
