@@ -7,7 +7,9 @@ import styles from "./validation.module.css";
 
 //other
 import { useState } from "react";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
+import { setCookies } from 'cookies-next';
+import { getCookie } from 'cookies-next'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
@@ -33,7 +35,7 @@ export default function Login() {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const login = async () => {
     if (currentUser.username === "") {
       setHintUsernameInput(true);
@@ -70,8 +72,9 @@ export default function Login() {
             return data.json();
           })
           .then(({ token }) => {
-            cookies.set("token", token);
-            setToken(cookies.get("token"));
+            setCookies('token', token);
+            // cookies.set("token", token);
+            setToken(getCookie('token'));
           });
       };
       getToken();

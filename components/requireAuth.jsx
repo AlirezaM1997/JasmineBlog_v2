@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 
 //other
-import Cookies from "universal-cookie";
+import { getCookie } from 'cookies-next'
 import { useAllState } from "../context/state";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,7 @@ import Loading from "./loading";
 function RequireAuth({ children }) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
 
   const [loading, setLoading] = useState(true);
   const { setUserInfo } = useAllState();
@@ -48,7 +48,7 @@ if (loading) {
     // console.clear()
     console.log("%c children", "background:blue", children);
     console.log("isAuthenticated", isAuthenticated);
-    console.log("token", cookies.get('token'));
+    console.log("token", getCookie('token'));
     // return children
 
     return isAuthenticated ? children : router.push("/validation/login");
