@@ -125,7 +125,7 @@ export default function Login() {
                   <div className="-mr-[1px] flex text-[#98a3ae] text-left">
                     <span className="py-3 px-4 pr-2 text-center inline-block min-w-[48px] whitespace-nowrap bg-inherit">
                       <FontAwesomeIcon
-                        className="overflow-hidden fill-current align-middle"
+                        className="overflow-hidden fill-current align-middle w-5"
                         icon={faUser}
                       ></FontAwesomeIcon>
                     </span>
@@ -174,9 +174,9 @@ export default function Login() {
                 >
                   You missed a spot! Don't forget to add your password.
                 </div>
-                <div className="text-center text-gray-200 hover:underline hover:text-gray-100">
+                <div className="text-center mt-9">
                   <Link href={"#"}>
-                    <a>Forgot your password?</a>
+                    <a className="text-gray-200 hover:text-gray-100 hover:underline">Forgot your password?</a>
                   </Link>
                 </div>
                 <div

@@ -84,16 +84,3 @@
   opacity: 0;
   transition: all 0.3s ease;
 }
-
-
-
-
-
-/*//////////////////////////////////*/
-.summeryContentInDashboard {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; 
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-  /* ///////////////////////////// */

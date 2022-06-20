@@ -27,18 +27,17 @@ input:focus {
   background-color: aliceblue;
   color: black;
 }
-.opaAnimate {
-  animation: fade_in_show 1s;
-}
-@keyframes change_scale_and_opacity {
-  0% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
+@-webkit-keyframes autofill {
+  0%,
   100% {
-    transform: scale(1);
-    opacity: 1;
+    background: white !important;
   }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /////////////////Loading///////////////////

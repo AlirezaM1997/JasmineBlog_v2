@@ -34,7 +34,6 @@ export default function SignUp() {
         name: currentUser.name,
       }),
     }).then(() => {
-      console.log("!!!!");
       router.push("/user/login");
     });
   };
@@ -43,7 +42,7 @@ export default function SignUp() {
     <>
       <section className={`${styles.wrapperSignUpBg}  flex`}>
         <diiv className="md:w-1/2 py-4 w-full flex items-center justify-center text-center md:px-4 z-0  sm:mt-0 md:mt-0">
-          <div className="w-[420px] px-5 bg-[#607027] py-10 text-center mb-11 relative ">
+          <div className="w-[420px] px-5 bg-[#607027] py-10 text-center mb-11 relative">
             <div className="z-20 w-full flex flex-col items-center animate-slowShow">
               <div className="">
                 <h1 className="text-3xl font-bold mb-4 text-white text-center">
@@ -58,7 +57,7 @@ export default function SignUp() {
                   <div className="-mr-[1px] flex text-[#98a3ae] text-left">
                     <span className="py-3 px-4 pr-2 text-center inline-block min-w-[48px] whitespace-nowrap bg-inherit">
                       <FontAwesomeIcon
-                        className="overflow-hidden fill-current align-middle"
+                        className="overflow-hidden fill-current align-middle w-5"
                         icon={faUser}
                       ></FontAwesomeIcon>
                     </span>

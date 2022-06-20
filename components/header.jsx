@@ -9,7 +9,7 @@ import { useState } from "react";
 
 import { useAllState } from "../context/state";
 
-export default function Header({ children }) {
+export default function Header() {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const { userInfo } = useAllState();
 
@@ -254,7 +254,6 @@ export default function Header({ children }) {
         </OffCanvasMenu>
       </OffCanvas>
 
-      {children}
     </>
   );
 }

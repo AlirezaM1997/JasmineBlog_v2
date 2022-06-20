@@ -5,17 +5,17 @@ import Error from "next/error";
 import Head from "next/head";
 
 //components
-import Loading from "./loading";
+import Loading from "../../../components/loading";
 
 //other
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
+import { removeCookies } from "cookies-next";
+import { useAllState } from "../../../context/state";
 
-import { useAllState } from "../context/state";
-
-export default function Dashboard() {
+const Dashboard = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const showMenu = () => {
     setIsMenuOpened(true);
@@ -26,14 +26,14 @@ export default function Dashboard() {
     }
   };
 
-  const { setToken } = useAllState();
-  const { setUserInfo } = useAllState();
-  const { userInfo } = useAllState();
+  // const { setToken } = useAllState();
+  // const { setUserInfo } = useAllState();
+  // const { userInfo } = useAllState();
+  // const { parsIsoDate } = useAllState();
 
   const [myBlogs, setMyBlogs] = useState();
   const [loading, setLoading] = useState(true);
 
-  const { parsIsoDate } = useAllState();
   const router = useRouter();
 
   useEffect(() => {
@@ -63,15 +63,14 @@ export default function Dashboard() {
   const logout = () => {
     toast.warn("You have successfully logged out!");
     setTimeout(() => {
-      cookies.remove("token");
-      setToken("");
-      setUserInfo();
+      removeCookies("token");
+      // setToken("");
+      // setUserInfo();
       // window.location.href = "/";
     }, 3000);
   };
-
   return (
-    <div>
+    <>
       <Head>
         <title>Dashboard</title>
       </Head>
@@ -90,14 +89,15 @@ export default function Dashboard() {
                 <a className="flex flex-shrink-0 items-center space-x-4">
                   <div className="flex flex-col items-end ">
                     <div className="text-sm font-medium font-[system-ui]">
-                      Welcome {userInfo.name}
+                      Welcome
+                      {/* {userInfo.name} */}
                     </div>
                     <div className="text-sm font-regular"></div>
                   </div>
                   {/* <img
-                    src={`${process.env.REACT_APP_DOMAIN}/${userInfo.avatar}`}
-                    className="h-10 w-10 rounded-full border border-[#607027]"
-                  ></img> */}
+                  src={`${process.env.REACT_APP_DOMAIN}/${userInfo.avatar}`}
+                  className="h-10 w-10 rounded-full border border-[#607027]"
+                ></img> */}
                 </a>
               </Link>
               <div className="ml-3 cursor-pointer relative" onClick={showMenu}>
@@ -163,7 +163,7 @@ export default function Dashboard() {
                         {myBlogs.map((item, i) => (
                           <div
                             key={i}
-                            className="p-4 sm:w-full w-full dashboardCard"
+                            className="p-4 sm:w-full w-full md:min-w-[50%] md:min-h-[50%] animate-scaleShow"
                           >
                             <div className="h-full shadow rounded overflow-hidden">
                               <img
@@ -174,7 +174,7 @@ export default function Dashboard() {
                               />
                               <div className="py-3 px-4">
                                 <h2 className="text-xs tracking-wide title-font font-medium text-gray-400 mb-1">
-                                  {parsIsoDate(item.updatedAt)}
+                                  {/* {parsIsoDate(item.updatedAt)} */}
                                 </h2>
                                 <h1 className="title-font text-lg font-medium text-gray-600 mb-1">
                                   {item.title}
@@ -210,7 +210,53 @@ export default function Dashboard() {
         </div>
       </div>
       <ToastContainer />
-
-    </div>
+      <style jsx>
+        {`
+          .summeryContentInDashboard {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        `}
+      </style>
+    </>
   );
-}
+};
+const withAuth = (Component) => {
+  const AuthenticatedComponent = () => {
+    const router = useRouter();
+    const [data, setData] = useState();
+    const [loading, setLoading] = useState(true);
+    // const {setUserInfo} =useAllState()
+    useEffect(() => {
+      const getUser = async () => {
+        const response = await fetch("http://localhost:4000/user/me", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth: `ut ${getCookie("token")}`,
+          },
+          body: JSON.stringify({}),
+        });
+        const userData = await response.json();
+        console.log("%c userData", "background:blue", userData);
+        if (userData && userData._id) {
+          setData(userData);
+          // setUserInfo(userData)
+        } else {
+          router.push("/validation/login");
+        }
+        setLoading(false);
+      };
+      getUser();
+    }, []);
+    if (loading) {
+      return <Loading />;
+    } else {
+      return data ? <Component /> : null;
+    }
+  };
+  return AuthenticatedComponent;
+};
+export default withAuth(Dashboard);
