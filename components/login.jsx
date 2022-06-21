@@ -73,7 +73,6 @@ export default function Login() {
           })
           .then(({ token }) => {
             setCookies('token', token);
-            // cookies.set("token", token);
             setToken(getCookie('token'));
           });
       };

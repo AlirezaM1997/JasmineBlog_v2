@@ -9,10 +9,10 @@ import Header from "./header";
 
 function Layout({ children }) {
   const router = useRouter();
-  if (router.pathname !== "/user/dashboard") {
+  if (router.pathname === "/user/dashboard" || router.pathname==='/user/dashboard/createblog') {
     return (
       <>
-        <Header />
+        
         {children}
         <Footer />
       </>
@@ -20,6 +20,7 @@ function Layout({ children }) {
   } else {
     return (
       <>
+      <Header />
         {children}
         <Footer />
       </>

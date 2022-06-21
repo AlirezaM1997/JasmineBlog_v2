@@ -13,7 +13,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
 import { removeCookies } from "cookies-next";
-import { useAllState } from "../../../context/state";
+// import { useAllState } from "../../../context/state";
+import Image from "next/image";
 
 const Dashboard = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -27,7 +28,7 @@ const Dashboard = () => {
   };
 
   // const { setToken } = useAllState();
-  // const { setUserInfo } = useAllState();
+  // const { token } = useAllState();
   // const { userInfo } = useAllState();
   // const { parsIsoDate } = useAllState();
 
@@ -37,7 +38,7 @@ const Dashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // console.log("userInfo", "background:yellow", userInfo);
+    // console.log("%c token", "background:yellow", token);
     // window.scrollTo(0, 0);
     fetch(`http://localhost:4000/blog/my-blogs`, {
       method: "GET",
@@ -55,7 +56,7 @@ const Dashboard = () => {
       })
       .then((result) => {
         setMyBlogs(result);
-        console.log(result);
+        // console.log(myBlogs);
         setLoading(false);
       });
   }, []);
@@ -66,9 +67,10 @@ const Dashboard = () => {
       removeCookies("token");
       // setToken("");
       // setUserInfo();
-      // window.location.href = "/";
+      window.location.href = "/";
     }, 3000);
   };
+
   return (
     <>
       <Head>
@@ -89,8 +91,7 @@ const Dashboard = () => {
                 <a className="flex flex-shrink-0 items-center space-x-4">
                   <div className="flex flex-col items-end ">
                     <div className="text-sm font-medium font-[system-ui]">
-                      Welcome
-                      {/* {userInfo.name} */}
+                      {/* Welcome {userInfo.name} */}
                     </div>
                     <div className="text-sm font-regular"></div>
                   </div>
@@ -130,7 +131,6 @@ const Dashboard = () => {
               </div>
             </div>
           </header>
-
           {router.pathname === "/user/dashboard" ? (
             <main className="max-w-full h-full flex flex-col pt-3 min-h-screen fablet:mx-10 tablap:px-14 LCD:px-20">
               <div className="h-full w-full flex flex-wrap justify-center mb-[55px]">
@@ -151,7 +151,7 @@ const Dashboard = () => {
                   </div>
                 ) : (
                   <section className="text-gray-600 body-font w-full iphone:px-4">
-                    <div className="container py-10 px-0">
+                    <div className="container mx-auto py-10 px-0">
                       <div className="mb-3 text-right">
                         <Link href={"/user/dashboard/createblog"}>
                           <a className="bg-[#607027] text-sm font-medium px-3 py-2 rounded text-white">
@@ -163,15 +163,19 @@ const Dashboard = () => {
                         {myBlogs.map((item, i) => (
                           <div
                             key={i}
-                            className="p-4 sm:w-full w-full md:min-w-[50%] md:min-h-[50%] animate-scaleShow"
+                            className="p-4 sm:w-full w-full md:min-w-[50%] md:max-w-[50%] animate-scaleShow"
                           >
                             <div className="h-full shadow rounded overflow-hidden">
-                              <img
-                                className="w-full h-60 object-cover object-center"
-                                src={item.imgurl}
-                                style={{ height: "15rem" }}
-                                alt="blog"
-                              />
+                              <div className="w-full h-[15rem] relative">
+                                <Image
+                                  loader={() => item.imgurl}
+                                  src={item.imgurl}
+                                  alt="blog"
+                                  layout="fill"
+                                  objectFit="cover"
+                                />
+                              </div>
+
                               <div className="py-3 px-4">
                                 <h2 className="text-xs tracking-wide title-font font-medium text-gray-400 mb-1">
                                   {/* {parsIsoDate(item.updatedAt)} */}
@@ -228,7 +232,8 @@ const withAuth = (Component) => {
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    // const {setUserInfo} =useAllState()
+    // const { setUserInfo } = useAllState();
+    // const { userInfo } = useAllState();
     useEffect(() => {
       const getUser = async () => {
         const response = await fetch("http://localhost:4000/user/me", {
@@ -240,13 +245,7 @@ const withAuth = (Component) => {
           body: JSON.stringify({}),
         });
         const userData = await response.json();
-        console.log("%c userData", "background:blue", userData);
-        if (userData && userData._id) {
-          setData(userData);
-          // setUserInfo(userData)
-        } else {
-          router.push("/validation/login");
-        }
+        setData(userData);
         setLoading(false);
       };
       getUser();
@@ -254,9 +253,31 @@ const withAuth = (Component) => {
     if (loading) {
       return <Loading />;
     } else {
-      return data ? <Component /> : null;
+      if (data && data._id) {
+        return <Component />;
+      } else {
+        router.push("/validation/login");
+      }
     }
   };
   return AuthenticatedComponent;
 };
 export default withAuth(Dashboard);
+
+// export async function getStaticProps() {
+//   const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       auth: `ut ${getCookie("token")}`,
+//     },
+//   });
+//   const blogs = await res.json();
+//   console.log('%c blogs','background:orange',blogs);
+
+//   return {
+//     props: {
+//       blogs,
+//     },
+//   };
+// }
