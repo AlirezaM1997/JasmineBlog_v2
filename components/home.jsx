@@ -22,7 +22,7 @@ import {
 import { useAllState } from "../context/state";
 
 export default function HomePage(props) {
-console.log('%c props in home','background:red',props);
+  // console.log("%c props in home", "background:red", props);
   const { slideNumber } = useAllState();
   const { setTopBlogs } = useAllState();
   const { parsIsoDate } = useAllState();
@@ -34,11 +34,12 @@ console.log('%c props in home','background:red',props);
   const [count, setCount] = useState(5);
 
   useEffect(() => {
-      setBlogs(props.props.data1);
-      console.log("blogs :", blogs);
-      setTopBlogs(props.props.data2);
-      setTopUsers(props.props.data3);
-      setLoading(false);
+    window.scrollTo(0, 0);
+    setBlogs(props.props.data1);
+    console.log("blogs :", blogs);
+    setTopBlogs(props.props.data2);
+    setTopUsers(props.props.data3);
+    setLoading(false);
   }, []);
 
   const loadMore = () => {
@@ -287,7 +288,10 @@ console.log('%c props in home','background:red',props);
                   })
                   .slice(0, 6)
                   .map((item, i) => (
-                    <div key={i} className="new-posts-item p-[15px] w-[calc(100%/3)] fablet:w-1/2 iphone:w-full iphone:p-[10px]">
+                    <div
+                      key={i}
+                      className="new-posts-item p-[15px] w-[calc(100%/3)] fablet:w-1/2 iphone:w-full iphone:p-[10px]"
+                    >
                       <article
                         className={`postOverlay w-[calc(100%+15px)] tablet:h-[350px] post-overlay-new fablet:h-[350px] iphone:h-[280px] pl-4 -mx-4 bg-transparent flex relative overflow-hidden`}
                       >
@@ -317,7 +321,9 @@ console.log('%c props in home','background:red',props);
                               </Link>
                               <h3 className="post__title-overlay text-white text-base font-medium mb-2 whitespace-normal break-words pointer-events-auto">
                                 <Link href={"#"}>
-                                  <a className="inline-block text-white">{item.title}</a>
+                                  <a className="inline-block text-white">
+                                    {item.title}
+                                  </a>
                                 </Link>
                               </h3>
                               <div className={`text-[#ffffff99] my-0 text-sm`}>
@@ -396,7 +402,9 @@ console.log('%c props in home','background:red',props);
                                     href={`/blog/${i._id}`}
                                     // style={{ display: "-webkit-box" }}
                                   >
-                                    <a className="overflow-hidden text-[#373737]">{i.title}</a>
+                                    <a className="overflow-hidden text-[#373737]">
+                                      {i.title}
+                                    </a>
                                   </Link>
                                 </h3>
                                 <div className="post__excerpt iphone:mb-0 md:mb-[20px] md:mx-auto text-[#888] text-[1.07rem] leading-6">

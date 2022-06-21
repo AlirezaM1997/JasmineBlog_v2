@@ -1,12 +1,18 @@
 //next
 import Link from "next/link";
+import Image from "next/image";
 
 //other
 import { removeCookies } from "cookies-next";
-import { useState } from "react";
-import { toast,ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+import { useAllState } from "../context/state";
 
 function DashboardHeader() {
+  const { userInfo } = useAllState();
+  const { setUserInfo } = useAllState();
+
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const showMenu = () => {
     setIsMenuOpened(true);
@@ -21,9 +27,9 @@ function DashboardHeader() {
     setTimeout(() => {
       removeCookies("token");
       // setToken("");
-      // setUserInfo();
+      setUserInfo();
       window.location.href = "/";
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -40,22 +46,27 @@ function DashboardHeader() {
           <Link href={"/user/dashboard"}>
             <a className="flex flex-shrink-0 items-center space-x-4">
               <div className="flex flex-col items-end ">
-                <div className="text-sm font-medium font-[system-ui]">
-                  Welcome 
-                  {/* {userInfo.name} */}
+                <div className="text-sm font-medium font-[system-ui] mr-2">
+                  Welcome {userInfo?.name}
                 </div>
                 <div className="text-sm font-regular"></div>
               </div>
-              {/* <img
-          src={`${process.env.REACT_APP_DOMAIN}/${userInfo.avatar}`}
-          className="h-10 w-10 rounded-full border border-[#607027]"
-        ></img> */}
+              <Image
+                loader={() => `${process.env.domainKey}/${userInfo?.avatar}`}
+                src={`${process.env.domainKey}/${userInfo?.avatar}`}
+                width="40px"
+                height="40px"
+                className="h-10 w-10 rounded-full border border-[#607027]"
+              ></Image>
             </a>
           </Link>
-          <div className="ml-3 cursor-pointer relative" onClick={showMenu}>
+          <div
+            className="ml-3 cursor-pointer relative"
+            onClick={!isMenuOpened ? showMenu : hideMenu}
+          >
             <i className="fa fa-cog" aria-hidden="true"></i>
             <div
-              className={`w-[100px] h-[80px] absolute right-0 top-[34px] bg-white rounded-sm border text-sm ${
+              className={`w-[100px] h-[80px] absolute right-0 top-[34px] bg-white rounded-sm border text-sm z-10 ${
                 isMenuOpened ? "" : "hidden"
               }`}
             >
@@ -70,7 +81,6 @@ function DashboardHeader() {
                     </li>
                   </a>
                 </Link>
-
                 <li
                   className="h-1/2 flex items-center hover:bg-gray-100 p-2 transition-colors"
                   onClick={logout}

@@ -10,9 +10,8 @@ import Loading from "../../../components/loading";
 
 //other
 import { useEffect, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
-// import { useAllState } from "../../../context/state";
+import { useAllState } from "../../../context/state";
 
 const Dashboard = () => {
   // const { setToken } = useAllState();
@@ -26,8 +25,8 @@ const Dashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // console.log("%c token", "background:yellow", token);
-    // window.scrollTo(0, 0);
+    // console.log("%c userInfo", "background:yellow", userInfo);
+    window.scrollTo(0, 0);
     fetch(`http://localhost:4000/blog/my-blogs`, {
       method: "GET",
       headers: {
@@ -157,7 +156,7 @@ const withAuth = (Component) => {
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    // const { setUserInfo } = useAllState();
+    const { setUserInfo } = useAllState();
     // const { userInfo } = useAllState();
     useEffect(() => {
       const getUser = async () => {
@@ -171,6 +170,7 @@ const withAuth = (Component) => {
         });
         const userData = await response.json();
         setData(userData);
+        setUserInfo(userData)
         setLoading(false);
       };
       getUser();
