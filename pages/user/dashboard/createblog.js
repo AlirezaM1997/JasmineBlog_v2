@@ -22,8 +22,8 @@ export default function CreateBlog() {
   const [cat, setCat] = useState("public");
   const [hashtags, setHashtags] = useState("");
   const [hashtagArr, setHashtagArr] = useState([]);
-//   const { token } = useAllState();
-const token = 'dfgdfbdbrswebweb'
+  //   const { token } = useAllState();
+  const token = "dfgdfbdbrswebweb";
 
   const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
@@ -137,13 +137,7 @@ const token = 'dfgdfbdbrswebweb'
                 height: 500,
                 menubar: false,
                 plugins: [
-                  "a11ychecker",
-                  "advlist",
-                  "advcode",
-                  "advtable",
                   "autolink",
-                  "checklist",
-                  "export",
                   "lists",
                   "link",
                   "image",
@@ -152,9 +146,7 @@ const token = 'dfgdfbdbrswebweb'
                   "anchor",
                   "searchreplace",
                   "visualblocks",
-                  "powerpaste",
                   "fullscreen",
-                  "formatpainter",
                   "insertdatetime",
                   "media",
                   "table",

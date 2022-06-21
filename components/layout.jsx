@@ -6,13 +6,17 @@ import { useRouter } from "next/router";
 //components
 import Footer from "./footer";
 import Header from "./header";
+import DashboardHeader from "./dashboardHeader";
 
 function Layout({ children }) {
   const router = useRouter();
-  if (router.pathname === "/user/dashboard" || router.pathname==='/user/dashboard/createblog') {
+  if (
+    router.pathname === "/user/dashboard" ||
+    router.pathname === "/user/dashboard/createblog"
+  ) {
     return (
       <>
-        
+      <DashboardHeader/>
         {children}
         <Footer />
       </>
@@ -20,7 +24,7 @@ function Layout({ children }) {
   } else {
     return (
       <>
-      <Header />
+        <Header />
         {children}
         <Footer />
       </>

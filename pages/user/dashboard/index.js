@@ -3,30 +3,18 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Error from "next/error";
 import Head from "next/head";
+import Image from "next/image";
 
 //components
 import Loading from "../../../components/loading";
 
 //other
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
-import { removeCookies } from "cookies-next";
 // import { useAllState } from "../../../context/state";
-import Image from "next/image";
 
 const Dashboard = () => {
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const showMenu = () => {
-    setIsMenuOpened(true);
-  };
-  const hideMenu = () => {
-    if (isMenuOpened) {
-      setIsMenuOpened(false);
-    }
-  };
-
   // const { setToken } = useAllState();
   // const { token } = useAllState();
   // const { userInfo } = useAllState();
@@ -61,76 +49,14 @@ const Dashboard = () => {
       });
   }, []);
 
-  const logout = () => {
-    toast.warn("You have successfully logged out!");
-    setTimeout(() => {
-      removeCookies("token");
-      // setToken("");
-      // setUserInfo();
-      window.location.href = "/";
-    }, 3000);
-  };
-
   return (
     <>
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div className="w-full bg-white relative flex" onClick={hideMenu}>
+      {/* <div className="w-full bg-white relative flex" onClick={hideMenu}> */}
+      <div className="w-full bg-white relative flex">
         <div className="w-full h-full flex flex-col justify-between">
-          <header className="h-16 w-full flex items-center justify-between relative iphone:px-[8px] md:px-[20px] space-x-10 bg-[#EEEEEE]">
-            <div>
-              <Link href={"/"}>
-                <a>
-                  <img src="/images/logopng.png" className="w-24"></img>
-                </a>
-              </Link>
-            </div>
-            <div className="flex items-center">
-              <Link href={"/user/dashboard"}>
-                <a className="flex flex-shrink-0 items-center space-x-4">
-                  <div className="flex flex-col items-end ">
-                    <div className="text-sm font-medium font-[system-ui]">
-                      {/* Welcome {userInfo.name} */}
-                    </div>
-                    <div className="text-sm font-regular"></div>
-                  </div>
-                  {/* <img
-                  src={`${process.env.REACT_APP_DOMAIN}/${userInfo.avatar}`}
-                  className="h-10 w-10 rounded-full border border-[#607027]"
-                ></img> */}
-                </a>
-              </Link>
-              <div className="ml-3 cursor-pointer relative" onClick={showMenu}>
-                <i className="fa fa-cog" aria-hidden="true"></i>
-                <div
-                  className={`w-[100px] h-[80px] absolute right-0 top-[34px] bg-white rounded-sm border text-sm ${
-                    isMenuOpened ? "" : "hidden"
-                  }`}
-                >
-                  <ul className="h-full">
-                    <Link href={"/user/dashboard/edituser"}>
-                      <a>
-                        <li
-                          className="h-1/2 flex items-center border-b hover:bg-gray-100 p-2 transition-colors"
-                          onClick={hideMenu}
-                        >
-                          setting
-                        </li>
-                      </a>
-                    </Link>
-
-                    <li
-                      className="h-1/2 flex items-center hover:bg-gray-100 p-2 transition-colors"
-                      onClick={logout}
-                    >
-                      <p>log out</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </header>
           {router.pathname === "/user/dashboard" ? (
             <main className="max-w-full h-full flex flex-col pt-3 min-h-screen fablet:mx-10 tablap:px-14 LCD:px-20">
               <div className="h-full w-full flex flex-wrap justify-center mb-[55px]">
@@ -144,7 +70,7 @@ const Dashboard = () => {
                       </p>
                     </div>
                     <Link href={"/user/dashboard/createblog"}>
-                      <a className="bg-[#607027] text-sm font-medium px-3 py-2 rounded text-white w-fit">
+                      <a className="bg-[#607027] text-sm font-medium px-3 py-2 rounded text-white hover:text-white  w-fit">
                         + Add The First Blog
                       </a>
                     </Link>
@@ -154,7 +80,7 @@ const Dashboard = () => {
                     <div className="container mx-auto py-10 px-0">
                       <div className="mb-3 text-right">
                         <Link href={"/user/dashboard/createblog"}>
-                          <a className="bg-[#607027] text-sm font-medium px-3 py-2 rounded text-white">
+                          <a className="bg-[#607027] text-sm font-medium px-3 py-2 rounded text-white hover:text-white ">
                             + Add a New Blog
                           </a>
                         </Link>
@@ -193,7 +119,7 @@ const Dashboard = () => {
                                   <Link
                                     href={`/user/dashboard/editblog/${item._id}`}
                                   >
-                                    <a className="px-8 py-2 w-2/6 text-center bg-[#607027] text-white transition-all duration-300 rounded">
+                                    <a className="px-8 py-2 w-2/6 text-center bg-[#607027] text-white hover:text-white transition-all duration-300 rounded">
                                       Edit
                                     </a>
                                   </Link>
@@ -213,7 +139,6 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <ToastContainer />
       <style jsx>
         {`
           .summeryContentInDashboard {
