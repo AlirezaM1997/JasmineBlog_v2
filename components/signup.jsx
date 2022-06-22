@@ -71,7 +71,6 @@ export default function SignUp() {
                     onChange={userHandler}
                     placeholder="username"
                     autoComplete="off"
-                    spellcheck="false"
                   />
                 </div>
                 <div className="relative flex flex-wrap items-stretch mb-4 w-full bg-gray-100 text-[1rem] font-normal leading-6 rounded-2xl">
@@ -89,7 +88,6 @@ export default function SignUp() {
                     onChange={userHandler}
                     placeholder="password"
                     autoComplete="off"
-                    spellcheck="false"
                   />
                 </div>
                 <div className="relative flex flex-wrap items-stretch mb-4 w-full bg-gray-100 text-[1rem] font-normal leading-6 rounded-2xl">
@@ -107,7 +105,6 @@ export default function SignUp() {
                     onChange={userHandler}
                     autoComplete="off"
                     placeholder="name"
-                    spellcheck="false"
                   />
                 </div>
 

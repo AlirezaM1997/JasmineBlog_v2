@@ -48,10 +48,10 @@ export default function MySlider() {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        <script
+        {/* <script
           type="text/javascript"
           src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"
-        ></script>
+        ></script> */}
       </Head>
       <Slider {...settings} afterChange={(e) => setSlideNumber(e + 1)}>
         {topBlogs.map((item, i) => (

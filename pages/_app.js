@@ -27,11 +27,11 @@ function MyApp({ Component, pageProps }) {
           href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           rel="stylesheet"
         />
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        {/* <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script
           src="https://cdn.tiny.cloud/1/u821xwx8p1gjb82hfruh78v5y75zft032appz0nyabz44f9w/tinymce/6/tinymce.min.js"
           referrerpolicy="origin"
-        ></script>
+        ></script> */}
       </Head>
       <Provider>
         <Layout>

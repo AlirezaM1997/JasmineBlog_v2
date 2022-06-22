@@ -21,7 +21,7 @@ import {
 
 import { useAllState } from "../context/state";
 
-export default function HomePage(props) {
+export default function Home(props) {
   // console.log("%c props in home", "background:red", props);
   const { slideNumber } = useAllState();
   const { setTopBlogs } = useAllState();
@@ -34,7 +34,7 @@ export default function HomePage(props) {
   const [count, setCount] = useState(5);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     setBlogs(props.props.data1);
     console.log("blogs :", blogs);
     setTopBlogs(props.props.data2);

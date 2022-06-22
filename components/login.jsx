@@ -138,15 +138,14 @@ export default function Login() {
                     onChange={userHandler}
                     placeholder="username"
                     autoComplete="off"
-                    spellcheck="false"
                   />
                 </div>
                 <div
                   className={`${
-                    hintUsernameInput ? "" : "hidden"
+                    hintUsernameInput ? null : "hidden"
                   } text-left text-[chartreuse] text-xs -mt-[14px] mb-2`}
                 >
-                  You missed a spot! Don't forget to add your username.
+                  You missed a spot! Donot forget to add your username.
                 </div>
                 <div className="relative flex flex-wrap items-stretch mb-4 w-full bg-gray-100 text-[1rem] font-normal leading-6 rounded-2xl">
                   <div className="-mr-[1px] flex text-[#98a3ae] text-left">
@@ -163,15 +162,14 @@ export default function Login() {
                     onChange={userHandler}
                     placeholder="password"
                     autoComplete="off"
-                    spellcheck="false"
                   />
                 </div>
                 <div
                   className={`${
-                    hintPasswordInput ? "" : "hidden"
+                    hintPasswordInput ? null : "hidden"
                   } text-left text-[chartreuse] text-xs -mt-[14px] mb-2`}
                 >
-                  You missed a spot! Don't forget to add your password.
+                  You missed a spot! Donot forget to add your password.
                 </div>
                 <div className="text-center mt-9">
                   <Link href={"#"}>

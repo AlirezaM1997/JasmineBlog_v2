@@ -2,15 +2,15 @@
 import Head from "next/head";
 
 //components
-import HomePage from "../components/home";
+import Home from "../components/home";
 
 //other
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Home(props) {
+export default function HomePage(props) {
   return (
     <>
-      <HomePage props={props} />
+      <Home props={props} />
     </>
   );
 }
