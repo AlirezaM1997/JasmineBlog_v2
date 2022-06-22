@@ -1,5 +1,6 @@
 //next
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 //components
 import Loading from "./Loading";
@@ -22,6 +23,9 @@ import { useAllState } from "../context/state";
 import Head from "next/head";
 
 export default function Blog(props) {
+  const router = useRouter();
+  const { id } = router.query;
+
   const [theRealID, setTheRealID] = useState(null);
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState();
@@ -49,7 +53,7 @@ export default function Blog(props) {
     setEditRate(true);
     setScoreValue();
     window.scrollTo(0, 0);
-    setTheRealID(props.dataFromStaticProps.id);
+    setTheRealID(id);
   }, []);
 
   useEffect(() => {
@@ -60,9 +64,15 @@ export default function Blog(props) {
     setComments(props.dataFromStaticProps.comments);
     setAllBlogs(props.dataFromStaticProps.userAllBlog);
 
-    const thisIndex = getIndexById(props.dataFromStaticProps.userAllBlog, props.dataFromStaticProps.id);
-    const preIndex = thisIndex !== 0 ? thisIndex - 1 : props.dataFromStaticProps.userAllBlog.length - 1;
-    const nextIndex = thisIndex !== props.dataFromStaticProps.userAllBlog.length - 1 ? thisIndex + 1 : 0;
+    const thisIndex = getIndexById(props.dataFromStaticProps.userAllBlog, id);
+    const preIndex =
+      thisIndex !== 0
+        ? thisIndex - 1
+        : props.dataFromStaticProps.userAllBlog.length - 1;
+    const nextIndex =
+      thisIndex !== props.dataFromStaticProps.userAllBlog.length - 1
+        ? thisIndex + 1
+        : 0;
 
     const preBlogInfo = props.dataFromStaticProps.userAllBlog[preIndex];
     const nextBlogInfo = props.dataFromStaticProps.userAllBlog[nextIndex];

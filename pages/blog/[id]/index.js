@@ -1,8 +1,3 @@
-import React, { useState } from "react";
-
-//next
-import { useRouter } from "next/router";
-
 //components
 import Blog from "../../../components/blog";
 
@@ -16,7 +11,6 @@ export default function BlogPage(props) {
 }
 
 export async function getStaticPaths() {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   // Call an external API endpoint to get posts
   const res = await fetch("http://localhost:4000/blog");
   const posts = await res.json();
@@ -26,18 +20,10 @@ export async function getStaticPaths() {
     params: { id: `${post.id}` },
   }));
   console.log('paths',paths)
-
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
-// const router = useRouter();
-// const { id } = router.query;
-
 export async function getStaticProps({ params }) {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-//   const [blogInfo, setBlogInfo] = useState();
-
   const responseBlog = await fetch(
     `http://localhost:4000/blog/single-blog/${params.id}`
   );

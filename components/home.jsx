@@ -22,7 +22,6 @@ import {
 import { useAllState } from "../context/state";
 
 export default function Home(props) {
-  // console.log("%c props in home", "background:red", props);
   const { slideNumber } = useAllState();
   const { setTopBlogs } = useAllState();
   const { parsIsoDate } = useAllState();
@@ -36,7 +35,6 @@ export default function Home(props) {
   useEffect(() => {
     // window.scrollTo(0, 0);
     setBlogs(props.props.data1);
-    console.log("blogs :", blogs);
     setTopBlogs(props.props.data2);
     setTopUsers(props.props.data3);
     setLoading(false);
