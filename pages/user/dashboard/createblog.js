@@ -1,5 +1,6 @@
 //next
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 //other
 import React, { useRef, useState } from "react";
@@ -90,6 +91,13 @@ export default function CreateBlog() {
 
   return (
     <>
+      <Head>
+        <script
+          src="https://cdn.tiny.cloud/1/aj9tbam7x3ifket4ask27aziwkke0u7efnvamyk1w5clyamj/tinymce/6/tinymce.min.js"
+          referrerpolicy="origin"
+        ></script>
+        <title>Create blog</title>
+      </Head>
       <div className="w-full h-full flex flex-col my-3 justify-center items-center">
         <div className="w-[95%]">
           <div className="">

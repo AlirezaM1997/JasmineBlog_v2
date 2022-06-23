@@ -1,6 +1,3 @@
-//next
-import Head from "next/head";
-
 //components
 import Home from "../components/home";
 
