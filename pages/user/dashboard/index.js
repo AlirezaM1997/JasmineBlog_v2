@@ -151,12 +151,14 @@ const Dashboard = () => {
     </>
   );
 };
+
 const withAuth = (Component) => {
   const AuthenticatedComponent = () => {
+
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    const { setUserInfo } = useAllState();
+    // const { setUserInfo } = useAllState();
     // const { userInfo } = useAllState();
     useEffect(() => {
       const getUser = async () => {
@@ -170,11 +172,13 @@ const withAuth = (Component) => {
         });
         const userData = await response.json();
         setData(userData);
-        setUserInfo(userData)
+
         setLoading(false);
+ 
       };
       getUser();
     }, []);
+    // console.log(userInfo);
     if (loading) {
       return <Loading />;
     } else {

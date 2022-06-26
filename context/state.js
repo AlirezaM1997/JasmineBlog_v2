@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Context = React.createContext();
 
 export function Provider({ children }) {
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState('');
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState();
   const [userId, setUserId] = useState();

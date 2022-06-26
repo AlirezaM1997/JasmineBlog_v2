@@ -8,6 +8,7 @@ import Loading from "../../components/loading";
 //other
 import React, { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
+
 function signup() {
   return <SignUp />;
 }

@@ -15,12 +15,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useAllState } from "../context/state";
+// import { useAllState } from "../context/state";
 
 export default function Login() {
   const router = useRouter();
 
-  const { setToken } = useAllState();
+  // const { setToken } = useAllState();
 
   const [hintUsernameInput, setHintUsernameInput] = useState(false);
   const [hintPasswordInput, setHintPasswordInput] = useState(false);
@@ -73,7 +73,7 @@ export default function Login() {
           })
           .then(({ token }) => {
             setCookies('token', token);
-            setToken(getCookie('token'));
+            // setToken(getCookie('token'));
           });
       };
       getToken();

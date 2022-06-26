@@ -7,8 +7,10 @@ import { useRouter } from "next/router";
 import Footer from "./footer";
 import Header from "./header";
 import DashboardHeader from "./dashboardHeader";
-
+// import { useAllState } from "../context/state";
 function Layout({ children }) {
+  // const { userInfo } = useAllState();
+  // console.log(userInfo);
   const router = useRouter();
   if (
     router.pathname === "/user/dashboard" ||
@@ -16,7 +18,7 @@ function Layout({ children }) {
   ) {
     return (
       <>
-      <DashboardHeader/>
+        <DashboardHeader />
         {children}
         <Footer />
       </>

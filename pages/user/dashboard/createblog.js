@@ -49,7 +49,7 @@ export default function CreateBlog() {
     arr.splice(p, 1);
     setHashtagArr(arr);
   };
-  console.log(hashtagArr);
+  // console.log(hashtagArr);
 
   const submitBLog = async () => {
     if (title === "") {

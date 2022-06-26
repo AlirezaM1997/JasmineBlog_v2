@@ -5,13 +5,16 @@ import styles from "./header.module.css";
 
 //othetr
 import { OffCanvas, OffCanvasMenu } from "react-offcanvas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useAllState } from "../context/state";
+// import { useAllState } from "../context/state";
 
 export default function Header() {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const { userInfo } = useAllState();
+
+  // const { userInfo } = useAllState();
+  // console.log(userInfo);
+
 
   const showMenu = () => {
     setIsMenuOpened(!isMenuOpened);
@@ -100,7 +103,7 @@ export default function Header() {
               </div>
             </div>
             <div className="navigation-bar_section last:pr-0">
-              {!userInfo ? (
+              {true ? (
                 <div className="flex">
                   <Link href="/validation/login">
                     <a className="hover:text-gray-700 text-gray-800 font-semibold py-2 px-2 rounded mr-2 outline-none">
@@ -115,15 +118,25 @@ export default function Header() {
                 </div>
               ) : (
                 <Link href={"/user/dashboard"}>
-                  <div className="flex flex-shrink-0 items-center text-white px-2">
-                    {/* <img
-                      src={`${process.env.REACT_APP_DOMAIN}/${userInfo.avatar}`}
-                      className="h-10 w-10 rounded-full border border-[#607027]"
-                    ></img> */}
-                    {/* <div className="text-md font-medium text-gray-600 ml-1">
-                      {userInfo.username}
-                    </div> */}
-                  </div>
+                  <a>
+                    <div className="flex flex-shrink-0 items-center text-white px-2">
+                      <div className="flex flex-col items-end ">
+                        <div className="text-md font-medium text-gray-600 ml-1">
+                         {/* {userInfo?.username} */}
+                        </div>
+                        <div className="text-sm font-regular"></div>
+                      </div>
+                      {/* <Image
+                        loader={() =>
+                          `${process.env.domainKey}/${userInfo?.avatar}`
+                        }
+                        src={`${process.env.domainKey}/${userInfo?.avatar}`}
+                        width="40px"
+                        height="40px"
+                        className="h-10 w-10 rounded-full border border-[#607027]"
+                      ></Image> */}
+                    </div>
+                  </a>
                 </Link>
               )}
             </div>
@@ -182,7 +195,7 @@ export default function Header() {
               </Link>
             </h2>
             <div className="mt-3">
-              {!userInfo ? (
+              {true ? (
                 <div className="flex">
                   <Link href={"/user/login"} onClick={showMenu}>
                     <a className="bg-[#607027] hover:text-gray-700 text-white py-2 px-2 rounded mr-2 outline-none">
@@ -253,7 +266,6 @@ export default function Header() {
           </div>
         </OffCanvasMenu>
       </OffCanvas>
-
     </>
   );
 }

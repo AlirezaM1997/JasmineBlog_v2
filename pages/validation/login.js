@@ -18,8 +18,7 @@ const withAuth = (Component) => {
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    // const { setUserInfo } = useAllState();
-    // const { userInfo } = useAllState();
+
     useEffect(() => {
       const getUser = async () => {
         const response = await fetch("http://localhost:4000/user/me", {

@@ -9,8 +9,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-//context
-import { useAllState } from "../context/state";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { changeSlideNumberAction } from "../slices/slideCounterSlice";
 
 export default function MySlider() {
   const settings = {
@@ -23,8 +24,8 @@ export default function MySlider() {
     touchThreshold: 10,
   };
 
-  const { setSlideNumber } = useAllState();
-  const { topBlogs } = useAllState();
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.counter.value);
 
   return (
     <>
@@ -53,8 +54,12 @@ export default function MySlider() {
           src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"
         ></script> */}
       </Head>
-      <Slider {...settings} afterChange={(e) => setSlideNumber(e + 1)}>
-        {topBlogs.map((item, i) => (
+      <Slider
+        {...settings}
+        // afterChange={(e) => setSlideNumber(e + 1)}
+      >
+        <h2>{value}</h2>
+        {/* {topBlogs.map((item, i) => (
           <div key={i} className="slide-content">
             <article className="postHorizontalLarge relative w-full after:table after:clear-both after:content-none">
               <div className={`${styles.postThumb} relative`}>
@@ -108,7 +113,7 @@ export default function MySlider() {
               </div>
             </article>
           </div>
-        ))}
+        ))} */}
       </Slider>
     </>
   );

@@ -19,7 +19,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { useAllState } from "../context/state";
+// import { useAllState } from "../context/state";
 import Head from "next/head";
 
 export default function Blog(props) {
@@ -31,8 +31,8 @@ export default function Blog(props) {
   const [comments, setComments] = useState();
   const [allBlogs, setAllBlogs] = useState([]);
   const [blogInfo, setBlogInfo] = useState();
-  const { userInfo } = useAllState();
-  const { parsIsoDate } = useAllState();
+  // const { userInfo } = useAllState();
+  // const { parsIsoDate } = useAllState();
 
   const [previous, setPrevious] = useState({
     _id: null,
@@ -113,10 +113,10 @@ export default function Blog(props) {
   };
 
   /*///////////////submitRate///////////////*/
-  const { scoreValue } = useAllState();
-  const { setScoreValue } = useAllState();
-  const { editRate } = useAllState();
-  const { setEditRate } = useAllState();
+  // const { scoreValue } = useAllState();
+  // const { setScoreValue } = useAllState();
+  // const { editRate } = useAllState();
+  // const { setEditRate } = useAllState();
 
   const submitRate = async (score) => {
     fetch(`http://localhost:4000/blog/submit-rate`, {
