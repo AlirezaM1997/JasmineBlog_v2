@@ -26,6 +26,8 @@ export default function MySlider() {
 
   const dispatch = useDispatch();
   const value = useSelector((state) => state.counter.value);
+  const top = useSelector((state) => state.topBlogs.value);
+  console.log('top',top);
 
   return (
     <>
@@ -58,8 +60,7 @@ export default function MySlider() {
         {...settings}
         // afterChange={(e) => setSlideNumber(e + 1)}
       >
-        <h2>{value}</h2>
-        {/* {topBlogs.map((item, i) => (
+        {useSelector((state) => state.topBlogs.value).map((item, i) => (
           <div key={i} className="slide-content">
             <article className="postHorizontalLarge relative w-full after:table after:clear-both after:content-none">
               <div className={`${styles.postThumb} relative`}>
@@ -113,7 +114,7 @@ export default function MySlider() {
               </div>
             </article>
           </div>
-        ))} */}
+        ))}
       </Slider>
     </>
   );

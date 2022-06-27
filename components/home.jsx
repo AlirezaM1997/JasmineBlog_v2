@@ -21,6 +21,7 @@ import {
 
 //redux
 import { useDispatch } from "react-redux";
+import { topBlogsAction } from "../slices/topBlogsSlice";
 
 export default function Home(props) {
   const dispatch = useDispatch();
@@ -35,11 +36,13 @@ export default function Home(props) {
 
   useEffect(() => {
     setBlogs(props.props.data1);
-    // dispatch(props.props.data2);
-    console.log(props.props.data2)
+    dispatch(topBlogsAction(props.props.data2));
+
+    // console.log(dispatch.name)
+
     setTopUsers(props.props.data3);
     setLoading(false);
-  }, []);
+  }, [dispatch]);
 
   const loadMore = () => {
     setCount(count + 3);
