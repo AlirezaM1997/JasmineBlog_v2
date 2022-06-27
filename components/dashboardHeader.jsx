@@ -7,11 +7,13 @@ import { removeCookies } from "cookies-next";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
-// import { useAllState } from "../context/state";
+
+//redux
+import { useSelector } from "react-redux";
+
 
 function DashboardHeader() {
-  // const { userInfo } = useAllState();
-  // const { setUserInfo } = useAllState();
+  const userInfo = useSelector((state) => state.userInfo.value);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const showMenu = () => {
@@ -43,7 +45,7 @@ function DashboardHeader() {
           </Link>
         </div>
         <div className="flex items-center">
-          {/* <Link href={"/user/dashboard"}>
+          <Link href={"/user/dashboard"}>
             <a className="flex flex-shrink-0 items-center space-x-4">
               <div className="flex flex-col items-end ">
                 <div className="text-sm font-medium font-[system-ui] mr-2">
@@ -59,7 +61,7 @@ function DashboardHeader() {
                 className="h-10 w-10 rounded-full border border-[#607027]"
               ></Image>
             </a>
-          </Link> */}
+          </Link>
           <div
             className="ml-3 cursor-pointer relative"
             onClick={!isMenuOpened ? showMenu : hideMenu}

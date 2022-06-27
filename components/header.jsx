@@ -5,16 +5,15 @@ import styles from "./header.module.css";
 
 //othetr
 import { OffCanvas, OffCanvasMenu } from "react-offcanvas";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-// import { useAllState } from "../context/state";
+//redux
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
-  // const { userInfo } = useAllState();
-  // console.log(userInfo);
-
+  const userInfo = useSelector((state) => state.userInfo.value);
 
   const showMenu = () => {
     setIsMenuOpened(!isMenuOpened);
@@ -103,7 +102,7 @@ export default function Header() {
               </div>
             </div>
             <div className="navigation-bar_section last:pr-0">
-              {true ? (
+              {!userInfo ? (
                 <div className="flex">
                   <Link href="/validation/login">
                     <a className="hover:text-gray-700 text-gray-800 font-semibold py-2 px-2 rounded mr-2 outline-none">
@@ -121,12 +120,12 @@ export default function Header() {
                   <a>
                     <div className="flex flex-shrink-0 items-center text-white px-2">
                       <div className="flex flex-col items-end ">
-                        <div className="text-md font-medium text-gray-600 ml-1">
-                         {/* {userInfo?.username} */}
+                        <div className="text-md font-medium text-gray-600 mr-1">
+                          {userInfo?.username}
                         </div>
                         <div className="text-sm font-regular"></div>
                       </div>
-                      {/* <Image
+                      <Image
                         loader={() =>
                           `${process.env.domainKey}/${userInfo?.avatar}`
                         }
@@ -134,7 +133,7 @@ export default function Header() {
                         width="40px"
                         height="40px"
                         className="h-10 w-10 rounded-full border border-[#607027]"
-                      ></Image> */}
+                      ></Image>
                     </div>
                   </a>
                 </Link>

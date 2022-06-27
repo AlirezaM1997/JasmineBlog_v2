@@ -1,10 +1,10 @@
 //next
 import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 //components
 import Loading from "./Loading";
-// import useReadingProgress from "./useReadingProgress";
 
 //other
 import { useEffect, useState } from "react";
@@ -18,21 +18,23 @@ import {
   faLinkedinIn,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import parseIsoDate from "../feature/parseIsoDate";
 
-// import { useAllState } from "../context/state";
-import Head from "next/head";
+//redux
+import { useSelector } from "react-redux";
+import Image from "next/image";
 
 export default function Blog(props) {
   const router = useRouter();
   const { id } = router.query;
+
+  const userInfo = useSelector((state) => state.userInfo.value);
 
   const [theRealID, setTheRealID] = useState(null);
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState();
   const [allBlogs, setAllBlogs] = useState([]);
   const [blogInfo, setBlogInfo] = useState();
-  // const { userInfo } = useAllState();
-  // const { parsIsoDate } = useAllState();
 
   const [previous, setPrevious] = useState({
     _id: null,
@@ -41,7 +43,7 @@ export default function Blog(props) {
   });
 
   const [next, setNext] = useState({
-    _id: "",
+    _id: null,
     imgurl: "",
     title: "",
   });
@@ -50,11 +52,11 @@ export default function Blog(props) {
     Array.isArray(arr) ? arr.findIndex((item) => item._id === id) : null;
 
   useEffect(() => {
+    // window.scrollTo(0, 0);
     setEditRate(true);
     setScoreValue();
-    window.scrollTo(0, 0);
     setTheRealID(id);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     setEditRate(true);
@@ -79,11 +81,7 @@ export default function Blog(props) {
 
     setPrevious(preBlogInfo);
     setNext(nextBlogInfo);
-
     setLoading(false);
-    // };
-
-    // myFunction();
   }, [theRealID]);
 
   /*/////////////submit comment/////////////*/
@@ -113,10 +111,8 @@ export default function Blog(props) {
   };
 
   /*///////////////submitRate///////////////*/
-  // const { scoreValue } = useAllState();
-  // const { setScoreValue } = useAllState();
-  // const { editRate } = useAllState();
-  // const { setEditRate } = useAllState();
+  const [scoreValue, setScoreValue] = useState();
+  const [editRate, setEditRate] = useState(true);
 
   const submitRate = async (score) => {
     fetch(`http://localhost:4000/blog/submit-rate`, {
@@ -144,6 +140,9 @@ export default function Blog(props) {
   };
 
   // const completion = useReadingProgress();
+  console.log("loading", loading);
+  console.log("!previous", !previous._id);
+  console.log("!next", !next._id);
 
   if (loading || !previous || !previous._id || !next || !next._id)
     return <Loading />;
@@ -213,7 +212,7 @@ export default function Blog(props) {
                               <span className="text-yellow-500 mr-1 text-xm font-semibold ">
                                 Last Update
                               </span>
-                              {parsIsoDate(blogInfo.updatedAt)}
+                              {parseIsoDate(blogInfo.updatedAt)}
                             </time>
                           </div>
                         </div>
@@ -242,7 +241,7 @@ export default function Blog(props) {
             </div>
 
             <div className="content-blog mb-0 relative">
-              <div className="container max-w-[970px] px-[35px]">
+              <div className="container mx-auto max-w-[970px] px-[35px]">
                 <div className="content-blog-col">
                   <article
                     className="content-blog-text mb-[50px] relative w-full"
@@ -260,7 +259,7 @@ export default function Blog(props) {
 
                       <div className="rating flex sm:px-10 sm:flex-row sm:items-center flex-col mb-6 md:justify-end justify-center">
                         <div className="sm:mr-3 sm:pb-2">
-                          <p className="font-sans font-semibold">
+                          <p className="font-sans font-semibold mb-0">
                             Rate this blog :
                           </p>
                         </div>
@@ -420,10 +419,12 @@ export default function Blog(props) {
                           <article className="w-[calc(100%+15px)] h-full bg-transparent pl-[15px] -mx-[15px] flex relative overflow-hidden">
                             <div className="post__thumb absolute w-full h-full">
                               <div className="w-full h-full">
-                                {/* <img
+                                <Image
                                   src={previous.imgurl}
+                                  loader={() => `${previous.imgurl}`}
                                   className="w-full h-full object-cover"
-                                ></img> */}
+                                  layout="fill"
+                                ></Image>
                               </div>
                             </div>
                             <div className="post__text flex items-end min-h-[200px] z-[1] pointer-events-none w-full relative text-white">
@@ -455,10 +456,12 @@ export default function Blog(props) {
                             {" "}
                             <div className="post__thumb absolute w-full h-full pr-[15px]">
                               <div className="w-full h-full">
-                                {/* <img
+                              <Image
                                   src={next.imgurl}
+                                  loader={() => `${next.imgurl}`}
                                   className="w-full h-full object-cover"
-                                ></img> */}
+                                  layout="fill"
+                                ></Image>
                               </div>
                             </div>
                             <div className="post__text p-0 flex items-end min-h-[200px] z-[1] pointer-events-none w-full relative text-white">
@@ -486,7 +489,7 @@ export default function Blog(props) {
                         <h2 className="py-4 text-gray-800 text-2xl sm:text-left nokia:text-center">
                           Add a new comment
                         </h2>
-                        {/* {userInfo ? (
+                        {userInfo ? (
                           <div className="flex flex-wrap -mx-3 mb-6 pb-8 border-b-2 border-[#0000000d]">
                             <div className="w-full md:w-full px-3 mb-2 mt-2">
                               <textarea
@@ -520,17 +523,14 @@ export default function Blog(props) {
                                   Login to post a comment
                                 </p>
                               </div>
-                              <Link
-                                
-                                href={"/user/login"}
-                              ><a className="text-blue-400 hover:text-blue-400 mt-[15px] sm:mt-0">
-
-                              Login Now
-                              </a>
+                              <Link href={"/user/login"}>
+                                <a className="text-blue-400 hover:text-blue-400 mt-[15px] sm:mt-0">
+                                  Login Now
+                                </a>
                               </Link>
                             </div>
                           </div>
-                        )} */}
+                        )}
                         <div className="mb-2">
                           {comments.map((item, i) => (
                             <div
@@ -543,7 +543,7 @@ export default function Blog(props) {
                                     {item.user.name} :
                                   </span>
                                   <div className="text-gray-400 text-sm">
-                                    {/* {parsIsoDate(item.createdAt)} */}
+                                    {parseIsoDate(item.createdAt)}
                                   </div>
                                 </div>
                                 <p
@@ -565,6 +565,18 @@ export default function Blog(props) {
           </div>
         </div>
       </div>
+      <style>
+        {`.dv-star-rating label i{
+          font-size: 1.5rem;
+        }
+        .CircularProgressbar .CircularProgressbar-path {
+          stroke: #607027 !important;
+        }
+        .CircularProgressbar .CircularProgressbar-text {
+          fill: white !important;
+        }
+        `}
+      </style>
     </>
   );
 }

@@ -11,21 +11,22 @@ import Loading from "../../../components/loading";
 //other
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
-import { useAllState } from "../../../context/state";
 
-const Dashboard = () => {
+//redux
+import { useDispatch } from "react-redux";
+import { userInfoAction } from "../../../slices/userInfoSlice";
+
+const Dashboard = (props) => {
   // const { setToken } = useAllState();
   // const { token } = useAllState();
-  // const { userInfo } = useAllState();
-  // const { parsIsoDate } = useAllState();
 
   const [myBlogs, setMyBlogs] = useState();
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
+  console.log("%c props", "background:yellow", props);
   useEffect(() => {
-    // console.log("%c userInfo", "background:yellow", userInfo);
     window.scrollTo(0, 0);
     fetch(`http://localhost:4000/blog/my-blogs`, {
       method: "GET",
@@ -151,15 +152,32 @@ const Dashboard = () => {
     </>
   );
 };
+export async function getStaticProps() {
+  console.log('1111111111111111111111111111');
+  const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      auth: `ut ${getCookie("token")}`,
+    },
+  });
+  const blogs = await res.json();
+  console.log('%c blogs','background:orange',blogs);
+
+  return {
+    props: {
+      blogs,
+    },
+  };
+}
 
 const withAuth = (Component) => {
   const AuthenticatedComponent = () => {
-
+    const dispatch = useDispatch();
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    // const { setUserInfo } = useAllState();
-    // const { userInfo } = useAllState();
+
     useEffect(() => {
       const getUser = async () => {
         const response = await fetch("http://localhost:4000/user/me", {
@@ -172,13 +190,12 @@ const withAuth = (Component) => {
         });
         const userData = await response.json();
         setData(userData);
-
+        dispatch(userInfoAction(userData));
         setLoading(false);
- 
       };
       getUser();
     }, []);
-    // console.log(userInfo);
+
     if (loading) {
       return <Loading />;
     } else {
@@ -193,20 +210,3 @@ const withAuth = (Component) => {
 };
 export default withAuth(Dashboard);
 
-// export async function getStaticProps() {
-//   const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       auth: `ut ${getCookie("token")}`,
-//     },
-//   });
-//   const blogs = await res.json();
-//   console.log('%c blogs','background:orange',blogs);
-
-//   return {
-//     props: {
-//       blogs,
-//     },
-//   };
-// }
