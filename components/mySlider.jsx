@@ -25,9 +25,6 @@ export default function MySlider() {
   };
 
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.counter.value);
-  const top = useSelector((state) => state.topBlogs.value);
-  console.log('top',top);
 
   return (
     <>
@@ -58,7 +55,7 @@ export default function MySlider() {
       </Head>
       <Slider
         {...settings}
-        // afterChange={(e) => setSlideNumber(e + 1)}
+        afterChange={(e) => dispatch(changeSlideNumberAction(e + 1))}
       >
         {useSelector((state) => state.topBlogs.value).map((item, i) => (
           <div key={i} className="slide-content">

@@ -20,13 +20,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { topBlogsAction } from "../slices/topBlogsSlice";
 
 export default function Home(props) {
   const dispatch = useDispatch();
-  // const { slideNumber } = useAllState();
-  // const { setTopBlogs } = useAllState();
+  const slideNum= useSelector((state) => state.counter.value)
+
   // const { parsIsoDate } = useAllState();
 
   const [topUsers, setTopUsers] = useState();
@@ -36,14 +36,11 @@ export default function Home(props) {
 
   useEffect(() => {
     setBlogs(props.props.data1);
-    dispatch(topBlogsAction(props.props.data2));
-
-    // console.log(dispatch.name)
-
     setTopUsers(props.props.data3);
+    dispatch(topBlogsAction(props.props.data2));
     setLoading(false);
-  }, [dispatch]);
-
+  }, []);
+  
   const loadMore = () => {
     setCount(count + 3);
   };
@@ -65,7 +62,9 @@ export default function Home(props) {
               <div className="main-section relative ml-[200px] mb-9 tablet:m-0">
                 <MySlider />
                 <div className="slideNumber absolute top-0 right-full w-[200px] text-[85px] leading-[1.33] text-white font-black text-center laptop:w-[180px] laptop:text-[68px] tablet:hidden ">
-                  {/* <span className="current-slide">0{slideNumber}</span> */}
+                  <span className="current-slide">
+                    0{slideNum}
+                  </span>
                   <span className="total-slides text-[#0000223b] text-[40px] align-super">
                     /03
                   </span>
