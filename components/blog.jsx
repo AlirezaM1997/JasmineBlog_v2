@@ -180,7 +180,7 @@ export default function Blog(props) {
               ></div>
               <div className="billboard__inner iphone:min-h-[340px] fablet:min-h-[450px] tablap:min-h-[600px] LCD:min-h-[540px] flex items-end">
                 <header className="pb-0 md:py-[30px] w-full py-5 m-0 ">
-                  <div className="container my-0 laptop:px-[40px] px-[150px] ">
+                  <div className="container mx-auto my-0 laptop:px-[40px] px-[150px] ">
                     <div className="header__inner iphone:p-[15px] p-[20px] bg-[#00000080] makbook:bg-[#3a3a3a80] text-white md:py-[30px] md:px-[40px] relative overflow-hidden makbook:backdrop-blur-[22px] makbook:backdrop-brightness-[137%] makbook:backdrop-grayscale-[10%]">
                       <div
                         className="absolute iphone:hidden bg-cover bg-center blur-[20px]"

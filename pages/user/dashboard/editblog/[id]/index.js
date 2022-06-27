@@ -1,14 +1,19 @@
 //components
 import EditBlog from "../../../../../components/editBlog";
 
-export default function EditBlogPage(props) {
+//other
+import withAuth from "../../../../../feature/withAuth";
+
+const EditBlogPage = (props) => {
   console.log(props);
   return (
     <>
       <EditBlog dataFromStaticProps={props} />
     </>
   );
-}
+};
+
+export default withAuth(EditBlogPage);
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
@@ -23,7 +28,7 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStatigetScProps({ params }) {
   const responseBlog = await fetch(
     `http://localhost:4000/blog/single-blog/${params.id}`
   );

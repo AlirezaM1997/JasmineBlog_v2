@@ -120,7 +120,7 @@ export default function Header() {
                   <a>
                     <div className="flex flex-shrink-0 items-center text-white px-2">
                       <div className="flex flex-col items-end ">
-                        <div className="text-md font-medium text-gray-600 mr-1">
+                        <div className="text-md font-medium text-gray-600 mr-2">
                           {userInfo?.username}
                         </div>
                         <div className="text-sm font-regular"></div>
@@ -194,7 +194,7 @@ export default function Header() {
               </Link>
             </h2>
             <div className="mt-3">
-              {true ? (
+              {!userInfo ? (
                 <div className="flex">
                   <Link href={"/user/login"} onClick={showMenu}>
                     <a className="bg-[#607027] hover:text-gray-700 text-white py-2 px-2 rounded mr-2 outline-none">
@@ -210,15 +210,20 @@ export default function Header() {
                 </div>
               ) : (
                 <Link href={"/user/dashboard"} onClick={showMenu}>
-                  {/* <div className="flex flex-shrink-0 items-center space-x-4 text-white">
-                    <img
-                      src={userInfo.avatar}
+                  <div className="flex flex-shrink-0 items-center space-x-4 text-white">
+                    <Image
+                      loader={() =>
+                        `${process.env.domainKey}/${userInfo?.avatar}`
+                      }
+                      src={`${process.env.domainKey}/${userInfo?.avatar}`}
+                      width="40px"
+                      height="40px"
                       className="h-10 w-10 rounded-full border border-[#607027]"
-                    ></img>
+                    ></Image>
                     <div className="text-md font-medium text-black font-[cursive]">
-                    {userInfo.username}
+                      {userInfo.username}
                     </div>
-                  </div> */}
+                  </div>
                 </Link>
               )}
             </div>

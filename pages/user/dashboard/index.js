@@ -11,15 +11,9 @@ import Loading from "../../../components/loading";
 //other
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
-
-//redux
-import { useDispatch } from "react-redux";
-import { userInfoAction } from "../../../slices/userInfoSlice";
+import withAuth from "../../../feature/withAuth";
 
 const Dashboard = (props) => {
-  // const { setToken } = useAllState();
-  // const { token } = useAllState();
-
   const [myBlogs, setMyBlogs] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -152,61 +146,26 @@ const Dashboard = (props) => {
     </>
   );
 };
-export async function getStaticProps() {
-  console.log('1111111111111111111111111111');
-  const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      auth: `ut ${getCookie("token")}`,
-    },
-  });
-  const blogs = await res.json();
-  console.log('%c blogs','background:orange',blogs);
 
-  return {
-    props: {
-      blogs,
-    },
-  };
-}
 
-const withAuth = (Component) => {
-  const AuthenticatedComponent = () => {
-    const dispatch = useDispatch();
-    const router = useRouter();
-    const [data, setData] = useState();
-    const [loading, setLoading] = useState(true);
+// export async function getStaticProps() {
+//   console.log('1111111111111111111111111111');
+//   const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       auth: `ut ${getCookie("token")}`,
+//     },
+//   });
+//   const blogs = await res.json();
+//   console.log('%c blogs','background:orange',blogs);
 
-    useEffect(() => {
-      const getUser = async () => {
-        const response = await fetch("http://localhost:4000/user/me", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            auth: `ut ${getCookie("token")}`,
-          },
-          body: JSON.stringify({}),
-        });
-        const userData = await response.json();
-        setData(userData);
-        dispatch(userInfoAction(userData));
-        setLoading(false);
-      };
-      getUser();
-    }, []);
+//   return {
+//     props: {
+//       blogs,
+//     },
+//   };
+// }
 
-    if (loading) {
-      return <Loading />;
-    } else {
-      if (data && data._id) {
-        return <Component />;
-      } else {
-        router.push("/validation/login");
-      }
-    }
-  };
-  return AuthenticatedComponent;
-};
 export default withAuth(Dashboard);
 

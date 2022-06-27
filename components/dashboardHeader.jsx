@@ -4,7 +4,7 @@ import Image from "next/image";
 
 //other
 import { removeCookies } from "cookies-next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 

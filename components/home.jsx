@@ -461,7 +461,6 @@ export default function Home(props) {
                     </div>
                   </div>
                 </div>
-
                 {/* <div className="bg-gray-200 sub-col tablap:w-[290px] relative overflow-visible float-left px-[15px] LCD:w-[300px]"></div> */}
               </div>
             </div>

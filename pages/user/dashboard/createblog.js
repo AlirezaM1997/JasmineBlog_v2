@@ -7,9 +7,10 @@ import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useAllState } from "../../../context/state";
+import { getCookie } from "cookies-next";
+import withAuth from "../../../feature/withAuth";
 
-export default function CreateBlog() {
+const CreateBlog = () => {
   const router = useRouter();
 
   const editorRef = useRef(null);
@@ -23,8 +24,6 @@ export default function CreateBlog() {
   const [cat, setCat] = useState("public");
   const [hashtags, setHashtags] = useState("");
   const [hashtagArr, setHashtagArr] = useState([]);
-  //   const { token } = useAllState();
-  const token = "dfgdfbdbrswebweb";
 
   const UID = () => {
     return new Date().getTime() + String(Math.random()).slice(3, 9);
@@ -49,7 +48,6 @@ export default function CreateBlog() {
     arr.splice(p, 1);
     setHashtagArr(arr);
   };
-  // console.log(hashtagArr);
 
   const submitBLog = async () => {
     if (title === "") {
@@ -67,7 +65,7 @@ export default function CreateBlog() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          auth: `ut ${token}`,
+          auth: `ut ${getCookie("token")}`,
         },
         body: JSON.stringify({
           cat: cat,
@@ -233,4 +231,6 @@ export default function CreateBlog() {
       <ToastContainer />
     </>
   );
-}
+};
+
+export default withAuth(CreateBlog);

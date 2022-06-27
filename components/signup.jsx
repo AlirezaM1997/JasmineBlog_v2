@@ -23,7 +23,6 @@ export default function SignUp() {
   const router = useRouter();
 
   const submitUser = async () => {
-    // const { setToken } = useAllState();
     fetch("http://localhost:4000/user/signup", {
       method: "POST",
       headers: {

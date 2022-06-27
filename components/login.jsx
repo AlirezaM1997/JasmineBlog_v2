@@ -7,21 +7,14 @@ import styles from "./validation.module.css";
 
 //other
 import { useState } from "react";
-// import Cookies from "universal-cookie";
 import { setCookies } from 'cookies-next';
-import { getCookie } from 'cookies-next'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import { useAllState } from "../context/state";
-
 export default function Login() {
   const router = useRouter();
-
-  // const { setToken } = useAllState();
-
   const [hintUsernameInput, setHintUsernameInput] = useState(false);
   const [hintPasswordInput, setHintPasswordInput] = useState(false);
   const [hintInfoWrong, setHintInfoWrong] = useState(false);

@@ -7,14 +7,14 @@ import { useRouter } from "next/router";
 import Footer from "./footer";
 import Header from "./header";
 import DashboardHeader from "./dashboardHeader";
-// import { useAllState } from "../context/state";
+
 function Layout({ children }) {
-  // const { userInfo } = useAllState();
-  // console.log(userInfo);
   const router = useRouter();
   if (
     router.pathname === "/user/dashboard" ||
-    router.pathname === "/user/dashboard/createblog"
+    router.pathname === "/user/dashboard/createblog" ||
+    router.pathname === "/user/dashboard/editblog" ||
+    router.pathname === "/user/dashboard/edituser"
   ) {
     return (
       <>
