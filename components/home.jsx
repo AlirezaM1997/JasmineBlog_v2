@@ -34,6 +34,8 @@ export default function Home(props) {
   const [count, setCount] = useState(5);
 
   useEffect(() => {
+  // console.log('axios', props.props.resp);
+
     setBlogs(props.props.data1);
     setTopUsers(props.props.data3);
     dispatch(topBlogsAction(props.props.data2));

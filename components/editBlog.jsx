@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useRef, useState } from "react";
 import { getCookie } from "cookies-next";
+import axios from "axios";
 
 export default function EditBlog(props) {
   const queryRouter = useRouter();

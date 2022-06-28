@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: { id: `${post.id}` },
   }));
-  console.log('paths',paths)
+  console.log("paths", paths);
   return { paths, fallback: true };
 }
 
@@ -27,10 +27,8 @@ export async function getStaticProps({ params }) {
   const responseBlog = await fetch(
     `http://localhost:4000/blog/single-blog/${params.id}`
   );
-  console.log(params.id)
   const thisBlog = await responseBlog.json();
-  const blogInfo = thisBlog
-
+  const blogInfo = thisBlog;
 
   const [res1, res2] = await Promise.all([
     fetch(`http://localhost:4000/comment/by-blog/${thisBlog._id}`),
@@ -48,6 +46,6 @@ export async function getStaticProps({ params }) {
   const [comments, userAllBlog] = await Promise.all([res1.json(), res2.json()]);
 
   return {
-    props: {  blogInfo, comments, userAllBlog },
+    props: { blogInfo, comments, userAllBlog },
   };
 }

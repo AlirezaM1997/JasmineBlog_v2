@@ -3,8 +3,10 @@ import Home from "../components/home";
 
 //other
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 export default function HomePage(props) {
+  console.log(props);
   return (
     <>
       <Home props={props} />
@@ -13,18 +15,24 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps() {
-  const [res1, res2, res3] = await Promise.all([
-    fetch("http://localhost:4000/blog"),
-    fetch("http://localhost:4000/blog/top-blogs"),
-    fetch("http://localhost:4000/user/top-users"),
-  ]);
+  const endpoints = [
+    "http://localhost:4000/blog",
+    "http://localhost:4000/blog/top-blogs",
+    "http://localhost:4000/user/top-users",
+  ];
+  try {
+    const result = await axios.all(endpoints.map((endpoint) => axios.get(endpoint)));
 
-  const [data1, data2, data3] = await Promise.all([
-    res1.json(),
-    res2.json(),
-    res3.json(),
-  ]);
+ const [data1, data2, data3] = [
+    result[0].data,
+    result[1].data,
+    result[2].data,
+  ];
   return {
-    props: {data1, data2, data3}
+    props: {data1, data2, data3 }
   }
+  } catch (error) {
+    console.log(error);
+  }
+
 }
