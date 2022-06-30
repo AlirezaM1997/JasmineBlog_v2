@@ -10,10 +10,13 @@ import { toast, ToastContainer } from "react-toastify";
 
 //redux
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { userInfoAction } from "../slices/userInfoSlice";
 
 
 function DashboardHeader() {
   const userInfo = useSelector((state) => state.userInfo.value);
+  const dispatch = useDispatch();
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const showMenu = () => {
@@ -28,8 +31,7 @@ function DashboardHeader() {
     toast.warn("You have successfully logged out!");
     setTimeout(() => {
       removeCookies("token");
-      // setToken("");
-      setUserInfo();
+      dispatch(userInfoAction(null))
       window.location.href = "/";
     }, 2000);
   };
@@ -72,11 +74,11 @@ function DashboardHeader() {
                 isMenuOpened ? "" : "hidden"
               }`}
             >
-              <ul className="h-full">
+              <ul className="h-full pl-0">
                 <Link href={"/user/dashboard/edituser"}>
                   <a>
                     <li
-                      className="h-1/2 flex items-center border-b hover:bg-gray-100 p-2 transition-colors"
+                      className="h-1/2 flex items-center text-black border-b hover:bg-gray-100 p-2 transition-colors"
                       onClick={hideMenu}
                     >
                       setting
@@ -87,7 +89,7 @@ function DashboardHeader() {
                   className="h-1/2 flex items-center hover:bg-gray-100 p-2 transition-colors"
                   onClick={logout}
                 >
-                  <p>log out</p>
+                  <p className="m-0">log out</p>
                 </li>
               </ul>
             </div>

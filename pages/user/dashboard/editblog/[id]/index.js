@@ -2,7 +2,7 @@
 import EditBlog from "../../../../../components/editBlog";
 
 //other
-import withAuth from "../../../../../feature/withAuth";
+import dashboardAuth from "../../../../../feature/dashboardAuth";
 
 const EditBlogPage = (props) => {
   console.log(props);
@@ -13,7 +13,7 @@ const EditBlogPage = (props) => {
   );
 };
 
-export default withAuth(EditBlogPage);
+export default dashboardAuth(EditBlogPage);
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts

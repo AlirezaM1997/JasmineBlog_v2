@@ -5,7 +5,6 @@ const initialState = {
 };
 
 function userInfo(state, action) {
-  console.log("action.payload", action.payload);
   state.value = action.payload;
 }
 

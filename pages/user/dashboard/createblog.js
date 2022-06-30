@@ -8,7 +8,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
-import withAuth from "../../../feature/withAuth";
+import dashboardAuth from "../../../feature/dashboardAuth";
 
 const CreateBlog = () => {
   const router = useRouter();
@@ -233,4 +233,4 @@ const CreateBlog = () => {
   );
 };
 
-export default withAuth(CreateBlog);
+export default dashboardAuth(CreateBlog);

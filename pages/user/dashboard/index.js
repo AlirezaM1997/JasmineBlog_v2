@@ -11,7 +11,7 @@ import Loading from "../../../components/loading";
 //other
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
-import withAuth from "../../../feature/withAuth";
+import dashboardAuth from "../../../feature/dashboardAuth";
 
 const Dashboard = (props) => {
   const [myBlogs, setMyBlogs] = useState();
@@ -167,5 +167,5 @@ const Dashboard = (props) => {
 //   };
 // }
 
-export default withAuth(Dashboard);
+export default dashboardAuth(Dashboard);
 

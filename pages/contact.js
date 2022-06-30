@@ -1,6 +1,7 @@
 //next
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect } from "react";
 
 //other
 import {
@@ -8,12 +9,37 @@ import {
   AiOutlineMail,
   AiOutlineInstagram,
 } from "react-icons/ai";
-
+import axios from "axios";
+import { getCookie } from "cookies-next";
 function Contact() {
+  // useEffect(()=>{
+
+  //   axios
+  //       .post(
+  //         "http://localhost:4000/user/me",
+  //         { body: JSON.stringify({}) },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             auth: `ut ${getCookie("token")}`,
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         console.log("%c response", "background:red", response);
+  //       })
+  //       .catch((error)=>{
+  //         if (error.response.data.msg==='Unauthorized') {
+  //           console.log('yyyyyyyyy');
+  //         }
+
+
+  //       })
+  // },[])
   return (
     <>
       <Head>
-        <title>About</title>
+        <title>Contact</title>
       </Head>
       <div className="p-12 flex opaAnimate" style={{ minHeight: "65vh" }}>
         <div className="w-1/2 hidden md:block relative">

@@ -2,8 +2,8 @@
 import EditUser from "../../../components/editUser";
 
 //other
-import withAuth from "../../../feature/withAuth";
 import { getCookie } from "cookies-next";
+import dashboardAuth from "../../../feature/dashboardAuth";
 
 const EditUserPage=(props)=> {
   console.log(props);
@@ -14,7 +14,7 @@ const EditUserPage=(props)=> {
   );
 }
 
-export default withAuth(EditUserPage)
+export default dashboardAuth(EditUserPage)
 
 export async function getStaticProps() {
   const res = await fetch("http://localhost:4000/user/me", {

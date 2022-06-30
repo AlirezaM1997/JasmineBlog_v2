@@ -12,9 +12,10 @@ import { userInfoAction } from "../slices/userInfoSlice";
 import { useState, useEffect } from "react";
 import { getCookie } from "cookies-next";
 
-const withAuth = (Component) => {
+const dashboardAuth = (Component) => {
   const AuthenticatedComponent = () => {
     const dispatch = useDispatch();
+
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
@@ -30,13 +31,13 @@ const withAuth = (Component) => {
           body: JSON.stringify({}),
         });
         const userData = await response.json();
+        console.log('%c userData','background:red',userData);
         setData(userData);
         dispatch(userInfoAction(userData));
-        setLoading(false);
+        setLoading(false)
       };
       getUser();
     }, []);
-
     if (loading) {
       return <Loading />;
     } else {
@@ -49,4 +50,5 @@ const withAuth = (Component) => {
   };
   return AuthenticatedComponent;
 };
-export default withAuth;
+
+export default dashboardAuth;
