@@ -31,7 +31,6 @@ const loginAuth = (Component) => {
           body: JSON.stringify({}),
         });
         const userData = await response.json();
-        console.log('%c userData','background:red',userData);
         setData(userData);
         dispatch(userInfoAction(userData));
         setLoading(false)

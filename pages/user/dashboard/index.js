@@ -19,9 +19,9 @@ const Dashboard = (props) => {
 
   const router = useRouter();
 
-  console.log("%c props", "background:yellow", props);
   useEffect(() => {
     window.scrollTo(0, 0);
+
     fetch(`http://localhost:4000/blog/my-blogs`, {
       method: "GET",
       headers: {
@@ -147,24 +147,52 @@ const Dashboard = (props) => {
   );
 };
 
-
 // export async function getStaticProps() {
-//   console.log('1111111111111111111111111111');
-//   const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       auth: `ut ${getCookie("token")}`,
-//     },
-//   });
-//   const blogs = await res.json();
-//   console.log('%c blogs','background:orange',blogs);
+  // const dispatch = useDispatch();
 
-//   return {
-//     props: {
-//       blogs,
-//     },
-//   };
+  // const router = useRouter();
+  // const [data, setData] = useState();
+  // const [loading, setLoading] = useState(true);
+
+  // const response = await fetch("http://localhost:4000/user/me", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     auth: `ut ${getCookie("token")}`,
+  //   },
+  //   body: JSON.stringify({}),
+  // });
+  // const userData = await response.json();
+  // setData(userData);
+  // dispatch(userInfoAction(userData));
+  // setLoading(false);
+
+  // if (loading) {
+  //   return <Loading />;
+  // } else {
+  //   if (data && data._id) {
+  //     return <Component />;
+  //   } else {
+  //     router.push("/validation/login");
+  //   }
+  // }
+
+
+
+  // const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     auth: `ut ${getCookie("token")}`,
+  //   },
+  // });
+  // const blogs = await res.json();
+
+  // return {
+  //   props: {
+  //     blogs,
+  //   },
+  // };
 // }
 
 export default dashboardAuth(Dashboard);

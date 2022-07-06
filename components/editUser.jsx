@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
 
 export default function EditUser(props) {
+  console.log('props',props);
+
   const [name, setName] = useState(props.dataFromStaticProps.user.name);
   console.log('name',name);
   const [bio, setBio] = useState(props.dataFromStaticProps.user.bio);

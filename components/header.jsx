@@ -196,13 +196,13 @@ export default function Header() {
             <div className="mt-3">
               {!userInfo ? (
                 <div className="flex">
-                  <Link href={"/user/login"} onClick={showMenu}>
+                  <Link href={"/validation/login"} onClick={showMenu}>
                     <a className="bg-[#607027] hover:text-gray-700 text-white py-2 px-2 rounded mr-2 outline-none">
                       Log in
                     </a>
                   </Link>
 
-                  <Link href={"/user/signup"} onClick={showMenu}>
+                  <Link href={"/validation/signup"} onClick={showMenu}>
                     <a className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-2 rounded">
                       Sign up
                     </a>

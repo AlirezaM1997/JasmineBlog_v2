@@ -27,18 +27,15 @@ import { topBlogsAction } from "../slices/topBlogsSlice";
 export default function Home(props) {
   const dispatch = useDispatch();
   const slideNum = useSelector((state) => state.counter.value);
-
   const [topUsers, setTopUsers] = useState();
   const [blogs, setBlogs] = useState();
   const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(5);
 
   useEffect(() => {
-  // console.log('axios', props.props.resp);
-
-    setBlogs(props.props.data1);
-    setTopUsers(props.props.data3);
-    dispatch(topBlogsAction(props.props.data2));
+    setBlogs(props.props.pageProps.data1);
+    setTopUsers(props.props.pageProps.data3);
+    dispatch(topBlogsAction(props.props.pageProps.data2));
     setLoading(false);
   }, []);
 

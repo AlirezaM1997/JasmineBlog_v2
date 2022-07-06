@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStatigetScProps({ params }) {
+export async function getStaticProps({ params }) {
   const responseBlog = await fetch(
     `http://localhost:4000/blog/single-blog/${params.id}`
   );

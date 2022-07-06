@@ -7,7 +7,7 @@ import styles from "./validation.module.css";
 
 //other
 import { useState } from "react";
-import { setCookies } from 'cookies-next';
+import { setCookies } from "cookies-next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
@@ -28,7 +28,6 @@ export default function Login() {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
-  // const cookies = new Cookies();
   const login = async () => {
     if (currentUser.username === "") {
       setHintUsernameInput(true);
@@ -57,7 +56,10 @@ export default function Login() {
             console.log(data);
             if (data.status === 200) {
               toast.success("You have successfully logged in!");
-              setTimeout(() => router.push({pathname :"/user/dashboard"}), 3000);
+              setTimeout(
+                () => router.push({ pathname: "/user/dashboard" }),
+                3000
+              );
             } else {
               setHintInfoWrong(true);
               setIsLoaded(false);
@@ -65,7 +67,7 @@ export default function Login() {
             return data.json();
           })
           .then(({ token }) => {
-            setCookies('token', token);
+            setCookies("token", token);
             // setToken(getCookie('token'));
           });
       };
@@ -166,7 +168,9 @@ export default function Login() {
                 </div>
                 <div className="text-center mt-9">
                   <Link href={"#"}>
-                    <a className="text-gray-200 hover:text-gray-100 hover:underline">Forgot your password?</a>
+                    <a className="text-gray-200 hover:text-gray-100 hover:underline">
+                      Forgot your password?
+                    </a>
                   </Link>
                 </div>
                 <div

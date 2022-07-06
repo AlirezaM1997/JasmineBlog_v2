@@ -14,7 +14,6 @@ const EditUserPage=(props)=> {
   );
 }
 
-export default dashboardAuth(EditUserPage)
 
 export async function getStaticProps() {
   const res = await fetch("http://localhost:4000/user/me", {
@@ -26,10 +25,13 @@ export async function getStaticProps() {
     body: JSON.stringify({}),
   });
   const user = await res.json();
-console.log('user',user);
+  console.log('user',user);
   return {
     props: {
       user,
     },
   };
 }
+
+export default dashboardAuth(EditUserPage)
+// export default EditUserPage

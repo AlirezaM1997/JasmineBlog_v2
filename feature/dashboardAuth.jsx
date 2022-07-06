@@ -15,7 +15,6 @@ import { getCookie } from "cookies-next";
 const dashboardAuth = (Component) => {
   const AuthenticatedComponent = () => {
     const dispatch = useDispatch();
-
     const router = useRouter();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
@@ -31,7 +30,6 @@ const dashboardAuth = (Component) => {
           body: JSON.stringify({}),
         });
         const userData = await response.json();
-        console.log('%c userData','background:red',userData);
         setData(userData);
         dispatch(userInfoAction(userData));
         setLoading(false)

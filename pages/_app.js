@@ -11,7 +11,7 @@ import "../styles/global.css";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, ...pageProps }) {
   return (
     <>
       <Head>
@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }) {
         ></script> */}
         {/* <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> */}
       </Head>
+
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
