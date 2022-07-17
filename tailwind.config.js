@@ -12,18 +12,18 @@ module.exports = {
         },
         increaseOpacityScale: {
           "0%": {
-            transform: 'scale(0.7)',
-            opacity: '0',
+            transform: "scale(0.7)",
+            opacity: "0",
           },
           "100%": {
-            transform: 'scale(1)',
-            opacity: '1',
+            transform: "scale(1)",
+            opacity: "1",
           },
         },
       },
       animation: {
         slowShow: "increaseOpacity 1s ease-in-out",
-        scaleShow : "increaseOpacityScale 1s ease-in-out"
+        scaleShow: "increaseOpacityScale 1s ease-in-out",
       },
       width: {
         45: "45%",
@@ -47,21 +47,6 @@ module.exports = {
       },
       backgroundImage: {
         signup: "url('/images/backgroundsignup.jpg')",
-      },
-      spacing: {
-        "200px": "200px",
-        "85px": "85px",
-        "180px": "180px",
-        "68px": "68px",
-        "40px": "40px",
-        "400px": "400px",
-        "325px": "325px",
-        "10px": "10px",
-        "70px": "70px",
-        "5px": "5px",
-        // '60px': '60px',
-
-        1.33: "1.33",
       },
     },
   },

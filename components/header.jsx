@@ -2,19 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./header.module.css";
-
+//redux
+import { useSelector } from "react-redux";
 //othetr
 import { OffCanvas, OffCanvasMenu } from "react-offcanvas";
 import { useState } from "react";
 
-//redux
-import { useSelector } from "react-redux";
-
 export default function Header() {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-
   const userInfo = useSelector((state) => state.userInfo.value);
-
   const showMenu = () => {
     setIsMenuOpened(!isMenuOpened);
   };
@@ -102,7 +98,7 @@ export default function Header() {
               </div>
             </div>
             <div className="navigation-bar_section last:pr-0">
-              {!userInfo ? (
+              {!userInfo?._id ? (
                 <div className="flex">
                   <Link href="/validation/login">
                     <a className="hover:text-gray-700 text-gray-800 font-semibold py-2 px-2 rounded mr-2 outline-none">

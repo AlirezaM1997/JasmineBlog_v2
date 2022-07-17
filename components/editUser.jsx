@@ -1,28 +1,42 @@
 //next
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 //other
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
-
+//redux
+import { useDispatch } from "react-redux";
+import { userInfoAction } from "../slices/userInfoSlice";
 export default function EditUser(props) {
-  console.log('props',props);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const [name, setName] = useState(props.dataFromStaticProps.user.name);
-  console.log('name',name);
-  const [bio, setBio] = useState(props.dataFromStaticProps.user.bio);
+  useEffect(() => {
+    if (props.dataFromStaticProps.pageProps.userData._id) {
+      dispatch(userInfoAction(props.dataFromStaticProps.pageProps.userData));
+    } else {
+      router.push("/validation/login");
+    }
+  }, []);
+
+  const [name, setName] = useState(
+    props.dataFromStaticProps.pageProps.userData.name
+  );
+  console.log("name", name);
+  const [bio, setBio] = useState(
+    props.dataFromStaticProps.pageProps.userData.bio
+  );
   const [bioLength, setBioLength] = useState(
-    props.dataFromStaticProps.user.bioLength
-      ? props.dataFromStaticProps.user.bioLength
+    props.dataFromStaticProps.pageProps.userData.bioLength
+      ? props.dataFromStaticProps.pageProps.userData.bioLength
       : 0
   );
-  const [imgurl, setImgurl] = useState(props.dataFromStaticProps.user.imgurl);
-
-  useEffect(() => {}, []);
-
-  const router = useRouter();
+  const [imgurl, setImgurl] = useState(
+    props.dataFromStaticProps.pageProps.userData.avatar
+  );
+  // console.log(props.dataFromStaticProps.pageProps.userData);
 
   const editUser = () => {
     fetch("http://localhost:4000/user/edit", {
@@ -75,16 +89,19 @@ export default function EditUser(props) {
   };
   return (
     <>
+      <Head>
+        <title>Edit User</title>
+      </Head>
       <div className="my-5">
         <div className="block md:flex justify-center flex-col items-center iphone:px-4">
           <div className="w-full fablet:w-3/4 makbook:w-[60%] p-8 shadow-md bg-[#eee] rounded">
             <div className="rounded shadow p-6 bg-white border border-[#607027]">
               <div className="flex items-end justify-center">
                 <div
-                  className="wrapperPicture"
+                  className="w-[125px] h-[125px] relative border-[#607027] border-[1px] rounded-full overflow-hidden"
                   id="wrapperPictureId"
                   style={{
-                    background: `url(${imgurl})`,
+                    background: `url(${process.env.domainKey}/${imgurl})`, backgroundSize :'100% 100%'
                   }}
                 >
                   <input
@@ -97,7 +114,7 @@ export default function EditUser(props) {
                       setFile(e.target.files[0]);
                       console.log(e.target.files);
                     }}
-                    className="pictureFile cursor-pointer"
+                    className="pictureFile flex absolute bottom-0 outline-none text-transparent w-full h-[40%] transition duration-300 py-[5px] px-[10px] border-none opacity-0 cursor-pointer bg-[#7D7D7D] fa before:content-['\f030'] before:font-black before:text-white before:text-center before:text-[1.3rem] before:inline-block before:select-none hover:opacity-100 focus:bg-[#7D7D7D] focus:border-none"
                   />
                 </div>
                 <div>
@@ -165,6 +182,13 @@ export default function EditUser(props) {
         </div>
       </div>
       <ToastContainer />
+      <style>
+        {`
+          .pictureFile::-webkit-file-upload-button {
+            visibility: hidden;
+          }
+          `}
+      </style>
     </>
   );
 }

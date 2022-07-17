@@ -1,12 +1,6 @@
-//components
 import EditUser from "../../../components/editUser";
 
-//other
-import { getCookie } from "cookies-next";
-import dashboardAuth from "../../../feature/dashboardAuth";
-
 const EditUserPage=(props)=> {
-  console.log(props);
   return (
     <>
       <EditUser dataFromStaticProps={props} />
@@ -14,24 +8,20 @@ const EditUserPage=(props)=> {
   );
 }
 
-
-export async function getStaticProps() {
-  const res = await fetch("http://localhost:4000/user/me", {
+export async function getServerSideProps(ctx) {
+  const response = await fetch("http://localhost:4000/user/me", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      auth: `ut ${getCookie("token")}`,
+      auth: `ut ${ctx.req.headers.cookie?.split("=")[1]}`,
     },
     body: JSON.stringify({}),
   });
-  const user = await res.json();
-  console.log('user',user);
+  const userData = await response.json();
   return {
     props: {
-      user,
+      userData,
     },
   };
 }
-
-export default dashboardAuth(EditUserPage)
-// export default EditUserPage
+export default EditUserPage

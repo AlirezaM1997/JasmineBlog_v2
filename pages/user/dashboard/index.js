@@ -20,10 +20,8 @@ const Dashboard = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("%c peops", "background:yellow", props);
     if (props.pageProps.userData._id) {
       dispatch(userInfoAction(props.pageProps.userData));
-
       fetch(`http://localhost:4000/blog/my-blogs`, {
         method: "GET",
         headers: {

@@ -39,7 +39,6 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
-
 /////////////////Loading///////////////////
 .lds-circle {
   display: inline-block;
@@ -69,7 +68,6 @@ input:-webkit-autofill:active {
     transform: rotateY(3600deg);
   }
 }
-
 ///////////////////////Slider///////////////////////////
 .slick-arrow {
   display: none !important;
@@ -117,8 +115,6 @@ input:-webkit-autofill:active {
 .slick-track {
   left: 1px !important;
 }
-
-
 .blogTextHomePage {
   display: -webkit-box;
   -webkit-line-clamp: 4; 
@@ -152,7 +148,6 @@ input:-webkit-autofill:active {
     transparent 100%
   );
 }
-
 .postCatOverlay {
   padding: 8px 12px 8px 40px;
   background: #607027;
@@ -188,7 +183,6 @@ input:-webkit-autofill:active {
   opacity: 1;
   z-index: 1;
 }
-
 /* //////////About Section////////// */
 .backgroundImg {
   background-image: url("/images/about.jpg");
