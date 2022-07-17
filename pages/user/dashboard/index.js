@@ -4,43 +4,47 @@ import Link from "next/link";
 import Error from "next/error";
 import Head from "next/head";
 import Image from "next/image";
-
 //components
 import Loading from "../../../components/loading";
-
+//redux
+import { useDispatch } from "react-redux";
+import { userInfoAction } from "../../../slices/userInfoSlice";
 //other
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
-import dashboardAuth from "../../../feature/dashboardAuth";
 
 const Dashboard = (props) => {
   const [myBlogs, setMyBlogs] = useState();
   const [loading, setLoading] = useState(true);
-
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    console.log("%c peops", "background:yellow", props);
+    if (props.pageProps.userData._id) {
+      dispatch(userInfoAction(props.pageProps.userData));
 
-    fetch(`http://localhost:4000/blog/my-blogs`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        auth: `ut ${getCookie("token")}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return <Error />;
-        }
+      fetch(`http://localhost:4000/blog/my-blogs`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          auth: `ut ${getCookie("token")}`,
+        },
       })
-      .then((result) => {
-        setMyBlogs(result);
-        // console.log(myBlogs);
-        setLoading(false);
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            return <Error />;
+          }
+        })
+        .then((result) => {
+          setMyBlogs(result);
+          setLoading(false);
+        });
+    } else {
+      router.push("/validation/login");
+    }
   }, []);
 
   return (
@@ -147,53 +151,20 @@ const Dashboard = (props) => {
   );
 };
 
-// export async function getStaticProps() {
-  // const dispatch = useDispatch();
-
-  // const router = useRouter();
-  // const [data, setData] = useState();
-  // const [loading, setLoading] = useState(true);
-
-  // const response = await fetch("http://localhost:4000/user/me", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     auth: `ut ${getCookie("token")}`,
-  //   },
-  //   body: JSON.stringify({}),
-  // });
-  // const userData = await response.json();
-  // setData(userData);
-  // dispatch(userInfoAction(userData));
-  // setLoading(false);
-
-  // if (loading) {
-  //   return <Loading />;
-  // } else {
-  //   if (data && data._id) {
-  //     return <Component />;
-  //   } else {
-  //     router.push("/validation/login");
-  //   }
-  // }
-
-
-
-  // const res = await fetch(`http://localhost:4000/blog/my-blogs`, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     auth: `ut ${getCookie("token")}`,
-  //   },
-  // });
-  // const blogs = await res.json();
-
-  // return {
-  //   props: {
-  //     blogs,
-  //   },
-  // };
-// }
-
-export default dashboardAuth(Dashboard);
-
+export async function getServerSideProps(ctx) {
+  const response = await fetch("http://localhost:4000/user/me", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      auth: `ut ${ctx.req.headers.cookie?.split("=")[1]}`,
+    },
+    body: JSON.stringify({}),
+  });
+  const userData = await response.json();
+  return {
+    props: {
+      userData,
+    },
+  };
+}
+export default Dashboard;
