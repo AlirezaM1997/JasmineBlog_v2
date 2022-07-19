@@ -3,7 +3,7 @@ import EditUser from "../../../components/editUser";
 const EditUserPage=(props)=> {
   return (
     <>
-      <EditUser dataFromStaticProps={props} />
+      <EditUser data={props} />
     </>
   );
 }

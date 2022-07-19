@@ -14,29 +14,28 @@ export default function EditUser(props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.dataFromStaticProps.pageProps.userData._id) {
-      dispatch(userInfoAction(props.dataFromStaticProps.pageProps.userData));
-    } else {
+    if (!props.data.pageProps.userData._id) {
       router.push("/validation/login");
-    }
+      // dispatch(userInfoAction(props.data.pageProps.userData));
+    } 
   }, []);
 
   const [name, setName] = useState(
-    props.dataFromStaticProps.pageProps.userData.name
+    props.data.pageProps.userData.name
   );
   console.log("name", name);
   const [bio, setBio] = useState(
-    props.dataFromStaticProps.pageProps.userData.bio
+    props.data.pageProps.userData.bio
   );
   const [bioLength, setBioLength] = useState(
-    props.dataFromStaticProps.pageProps.userData.bioLength
-      ? props.dataFromStaticProps.pageProps.userData.bioLength
+    props.data.pageProps.userData.bioLength
+      ? props.data.pageProps.userData.bioLength
       : 0
   );
   const [imgurl, setImgurl] = useState(
-    props.dataFromStaticProps.pageProps.userData.avatar
+    props.data.pageProps.userData.avatar
   );
-  // console.log(props.dataFromStaticProps.pageProps.userData);
+  // console.log(props.data.pageProps.userData);
 
   const editUser = () => {
     fetch("http://localhost:4000/user/edit", {

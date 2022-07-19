@@ -1,7 +1,7 @@
 import CreateBlog from "../../../components/createBlog";
 
 const CreateBlogPage = (props) => {
-  return <CreateBlog dataFromStaticProps={props}/>;
+  return <CreateBlog data={props}/>;
 };
 export async function getServerSideProps(ctx) {
   const response = await fetch("http://localhost:4000/user/me", {

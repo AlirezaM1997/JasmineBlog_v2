@@ -34,13 +34,14 @@ export default function EditBlog(props) {
   const [hashtags, setHashtags] = useState("");
 
   useEffect(() => {
-    setPostTitle(props.dataFromStaticProps.blog.title);
-    setPostImgUrl(props.dataFromStaticProps.blog.imgurl);
-    setPostText(props.dataFromStaticProps.blog.content);
-    setPostCat(props.dataFromStaticProps.blog.cat);
+console.log(props);
+    setPostTitle(props.data.pageProps.blog.title);
+    setPostImgUrl(props.data.pageProps.blog.imgurl);
+    setPostText(props.data.pageProps.blog.content);
+    setPostCat(props.data.pageProps.blog.cat);
     setPostHashtag(
-      props.dataFromStaticProps.blog.hashtag
-        ? props.dataFromStaticProps.blog.hashtag
+      props.data.pageProps.blog.hashtag
+        ? props.data.pageProps.blog.hashtag
         : []
     );
     setLoadingForEditPost(false);
