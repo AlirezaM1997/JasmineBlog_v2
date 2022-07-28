@@ -52,7 +52,6 @@ export default function Blog(props) {
     Array.isArray(arr) ? arr.findIndex((item) => item._id === id) : null;
 
   useEffect(() => {
-    // window.scrollTo(0, 0);
     setEditRate(true);
     setScoreValue();
     setTheRealID(id);

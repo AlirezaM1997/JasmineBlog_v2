@@ -53,7 +53,6 @@ export default function Login() {
           }),
         })
           .then((data) => {
-            console.log(data);
             if (data.status === 200) {
               toast.success("You have successfully logged in!");
               setTimeout(

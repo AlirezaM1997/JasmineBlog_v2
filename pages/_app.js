@@ -27,11 +27,6 @@ function MyApp({ Component, ...pageProps }) {
           href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           rel="stylesheet"
         />
-        {/* <script
-          src="https://cdn.tiny.cloud/1/aj9tbam7x3ifket4ask27aziwkke0u7efnvamyk1w5clyamj/tinymce/6/tinymce.min.js"
-          referrerpolicy="origin"
-        ></script> */}
-        {/* <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> */}
       </Head>
 
       <Provider store={store}>
