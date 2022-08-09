@@ -1,12 +1,9 @@
 //next
 import Head from "next/head";
-
 //components
 import Layout from "../components/layout";
-
 //other
 import "../styles/global.css";
-
 //redux
 import { Provider } from "react-redux";
 import { store } from "../store/store";

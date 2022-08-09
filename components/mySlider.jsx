@@ -2,13 +2,10 @@
 import Link from "next/link";
 import styles from "./mySlider.module.css";
 import Head from "next/head";
-import Image from "next/image";
-
 //other
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { changeSlideNumberAction } from "../slices/slideCounterSlice";
@@ -23,9 +20,7 @@ export default function MySlider() {
     slidesToScroll: 1,
     touchThreshold: 10,
   };
-
   const dispatch = useDispatch();
-
   return (
     <>
       <Head>
