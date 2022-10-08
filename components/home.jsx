@@ -342,13 +342,6 @@ export default function Home(props) {
         </div>
 
         <div className="allBlogs relative mb-10 laptop:mb-[70px]">
-          {/* <div className="container mx-auto">
-            <div className="jasmine-heading relative text-center mb-16">
-              <h4 className="heading__title inline-block relative m-0 text-4xl leading-6 pr-12 pl-16 z-10">
-                The Latest Blogs
-              </h4>
-            </div>
-          </div> */}
           <div className="makbook:px-[6rem] container px-[15px]">
             <div className="allBlogs-content">
               <div className="row -mx-[15px] before:table before:content-[' ']">

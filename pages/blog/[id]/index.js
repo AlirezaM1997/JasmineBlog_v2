@@ -1,22 +1,17 @@
-//components
 import Blog from "../../../components/blog";
-
 export default function BlogPage(props) {
-  console.log(props);
   return (
     <>
       <Blog dataFromStaticProps={props} />
     </>
   );
 }
-
 export async function getStaticPaths() {
   const res = await fetch("http://localhost:4000/blog");
   const posts = await res.json();
   const paths = posts.map((post) => ({
     params: { id: `${post.id}` },
   }));
-  console.log("paths", paths);
   return { paths, fallback: true };
 }
 export async function getStaticProps({ params }) {
